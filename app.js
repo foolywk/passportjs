@@ -36,7 +36,7 @@ app.use(express.static(__dirname + '/public'));
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
 console.log('serializeUser: ' + user._id)
-done(null, user);
+done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
