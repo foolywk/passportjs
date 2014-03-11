@@ -6,31 +6,15 @@ var routes = require('./routes');
 var path = require('path');
 var app = express();
 var config = require('./oauth.js')
+var User = require('./user.js')
 var mongoose = require('mongoose');
 var passport = require('passport');
+var fbAuth = require('./authentication.js')
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 
-// serialize and deserialize
-passport.serializeUser(function(user, done) {
-done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-done(null, obj);
-});
-
-// config
-passport.use(new FacebookStrategy({
- clientID: config.facebook.clientID,
- clientSecret: config.facebook.clientSecret,
- callbackURL: config.facebook.callbackURL
-},
-function(accessToken, refreshToken, profile, done) {
- process.nextTick(function () {
-   return done(null, profile);
- });
-}
-));
+// connect to the database
+mongoose.connect('mongodb://localhost/passport-example');
 
 var app = express();
 
@@ -39,7 +23,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.logger());
 app.use(express.cookieParser());
-app.use(express.bodyParser());
+app.use(express.json());
+app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.session({ secret: 'my_precious' }));
 app.use(passport.initialize());
@@ -48,17 +33,38 @@ app.use(app.router);
 app.use(express.static(__dirname + '/public'));
 });
 
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+console.log('serializeUser: ' + user._id)
+done(null, user);
+});
+
+passport.deserializeUser(function(id, done) {
+ User.findById(id, function(err, user){
+     console.log(user)
+     if(!err) done(null, user);
+     else done(err, null)
+ })
+});
+
 // routes
 app.get('/', routes.index);
 app.get('/ping', routes.ping);
 app.get('/account', ensureAuthenticated, function(req, res){
-res.render('account', { user: req.user });
+User.findById(req.session.passport.user, function(err, user) {
+ if(err) {
+   console.log(err);
+ } else {
+   res.render('account', { user: user});
+ };
+});
 });
 
 app.get('/', function(req, res){
 res.render('login', { user: req.user });
 });
 
+// fb 
 app.get('/auth/facebook',
 passport.authenticate('facebook'),
 function(req, res){
@@ -68,13 +74,10 @@ passport.authenticate('facebook', { failureRedirect: '/' }),
 function(req, res) {
  res.redirect('/account');
 });
-app.get('/logout', function(req, res){
-req.logout();
-res.redirect('/');
-});
 
 // port
 app.listen(1337);
+console.log('Listening on port 1337');
 
 // test authentication
 function ensureAuthenticated(req, res, next) {
