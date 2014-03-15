@@ -7,3 +7,7 @@ exports.index = function(req, res){
 exports.ping = function(req, res){
   res.send("pong!", 200);
 };
+
+exports.uploadVideo = function(req, res) {
+  res.send("This is the page where users can upload video", 200);
+};

@@ -12,6 +12,10 @@ var passport = require('passport');
 var fbAuth = require('./authentication.js')
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var vimeo = require('n-vimeo').vimeo;
+var request = require('request');
+
+var filePath = path.join(__dirname, '../public/Nosaj_Thing.MOV')
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
@@ -50,6 +54,7 @@ passport.deserializeUser(function(id, done) {
 // routes
 app.get('/', routes.index);
 app.get('/ping', routes.ping);
+app.get('/uploadVideo', routes.uploadVideo);
 app.get('/account', ensureAuthenticated, function(req, res){
 User.findById(req.session.passport.user, function(err, user) {
  if(err) {
