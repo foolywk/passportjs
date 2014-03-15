@@ -50,6 +50,4 @@ exports.uploadVideo = function(req, res) {
 });
 
 
-
-
 };
