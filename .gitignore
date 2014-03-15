@@ -7,3 +7,4 @@
 node_modules
 *.out
 .oauth.js
+.client_secrets.json
