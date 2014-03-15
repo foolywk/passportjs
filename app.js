@@ -12,10 +12,10 @@ var passport = require('passport');
 var fbAuth = require('./authentication.js')
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var vimeo = require('n-vimeo').vimeo;
+var ytUploader = require('youtube-uploader');
 var request = require('request');
 
-var filePath = path.join(__dirname, '../public/test.MOV')
+var filePath = path.join(__dirname, './public/test.MOV')
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
