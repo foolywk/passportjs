@@ -15,7 +15,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var vimeo = require('n-vimeo').vimeo;
 var request = require('request');
 
-var filePath = path.join(__dirname, '../public/Nosaj_Thing.MOV')
+var filePath = path.join(__dirname, '../public/test.MOV')
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
