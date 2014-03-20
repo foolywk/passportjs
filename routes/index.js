@@ -4,7 +4,6 @@ var fs = require('fs');
 var User = require('../user.js');
 var auth;
 
-// fs.readFileSync(__dirname + '../public/test.MOV')
 googleapis.discover('youtube','v3').execute(function(err,client) {
 
   var metadata= {
@@ -12,24 +11,15 @@ googleapis.discover('youtube','v3').execute(function(err,client) {
     status: {privacyStatus: 'privacy' }
   };
 
-  User.findOne({ oauthID: 12345, name: "testy" }, function(err, user) {
-      user.name.should.eql('testy');
-      user.oauthID.should.eql(12345)
-      console.log("Client oauthID set to: ", user.oauthID);
-      auth = user.oauthID;
-      done();
-    });
-
   client
     .youtube.videos.insert({ part: 'snippet,status'}, metadata)
     .withMedia('video/MOV', fs.readFileSync(__dirname + '/test.MOV'))
-    .withAuthClient(auth)
+    //.withAuthClient('347150572630.apps.googleusercontent.com')
     .execute(function(err, result) {
         if (err) console.log(err);
         else console.log(JSON.stringify(result, null, '  '));
     });
 });
-
 
 exports.index = function(req, res){
   res.render('index', { title: "Start Bootstrap"});

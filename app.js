@@ -15,19 +15,10 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var googleapis = require('googleapis');
 var request = require('request');
 
-googleapis.discover('youtube', 'v3').execute(function(err,client) {
-
-	var metadata = {
-		snippet: {title:'title', description: 'description'},
-		status: {privacyStatus: 'private'}
-	}
-});
-
 var filePath = path.join(__dirname, './public/test.MOV')
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
-var app = express();
 
 app.configure(function() {
 app.set('views', __dirname + '/views');
@@ -42,20 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 app.use(express.static(__dirname + '/public'));
-});
-
-// serialize and deserialize
-passport.serializeUser(function(user, done) {
-console.log('serializeUser: ' + user._id)
-done(null, user._id);
-});
-
-passport.deserializeUser(function(id, done) {
- User.findById(id, function(err, user){
-     console.log(user)
-     if(!err) done(null, user);
-     else done(err, null)
- })
 });
 
 // routes
