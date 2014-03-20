@@ -12,14 +12,21 @@ var passport = require('passport');
 var fbAuth = require('./authentication.js')
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-var ytUploader = require('youtube-uploader');
+var googleapis = require('googleapis');
 var request = require('request');
+
+googleapis.discover('youtube', 'v3').execute(function(err,client) {
+
+	var metadata = {
+		snippet: {title:'title', description: 'description'},
+		status: {privacyStatus: 'private'}
+	}
+});
 
 var filePath = path.join(__dirname, './public/test.MOV')
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
-
 var app = express();
 
 app.configure(function() {

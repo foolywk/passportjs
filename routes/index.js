@@ -1,10 +1,35 @@
 var path = require("path");
-var ytUploader = require('youtube-uploader');
+var googleapis = require('googleapis');
 var fs = require('fs');
-var file = __dirname + client_secrets.json
-var json 
+var User = require('../user.js');
+var auth;
 
-var filePath = path.join(__dirname, './public/test.MOV')
+// fs.readFileSync(__dirname + '../public/test.MOV')
+googleapis.discover('youtube','v3').execute(function(err,client) {
+
+  var metadata= {
+    snippet: {title:'title', description: 'description'},
+    status: {privacyStatus: 'privacy' }
+  };
+
+  User.findOne({ oauthID: 12345, name: "testy" }, function(err, user) {
+      user.name.should.eql('testy');
+      user.oauthID.should.eql(12345)
+      console.log("Client oauthID set to: ", user.oauthID);
+      auth = user.oauthID;
+      done();
+    });
+
+  client
+    .youtube.videos.insert({ part: 'snippet,status'}, metadata)
+    .withMedia('video/MOV', fs.readFileSync(__dirname + '/test.MOV'))
+    .withAuthClient(auth)
+    .execute(function(err, result) {
+        if (err) console.log(err);
+        else console.log(JSON.stringify(result, null, '  '));
+    });
+});
+
 
 exports.index = function(req, res){
   res.render('index', { title: "Start Bootstrap"});
@@ -14,40 +39,7 @@ exports.ping = function(req, res){
   res.send("pong!", 200);
 };
 
-
-fs.readFile(file, 'utf8', function (err, data) {
-  if (err) {
-    console.log('Error: ' + err);
-    return;
-  }
-  json = JSON.parse(data);
-});
-
-
 exports.uploadVideo = function(req, res) {
-  res.write("This is the page where users can upload video", 200);
-
-  youtubeUploader.configure({
-  accessToken: ACCESS_TOKEN,  // string
-  clientId: json.client_id,  // string
-  clientSecret: json.client_secret,  // string
-  expiresIn: '3600',  // string (default: '3600')
-  idToken: ID_TOKEN,  // string
-  refreshToken: REFRESH_TOKEN,  // string
-  tokenType: 'Bearer'  // string (default: 'Bearer')
-}, function (err) {
-  if (err) { return console.error(err.message); }
-  youtubeUploader.upload({
-    path: filePath,  // string
-    title: 'PP Test Upload',  // string
-    description: 'Lorem Ipsum Description',  // string
-    keywords: 'KEYWORDS',  // array of string
-    category: '22',  // string (refer to https://developers.google.com/youtube/v3/docs/videoCategories/list)
-    privacy: 'unlisted'  // 'public', 'private', or 'unlisted'
-  }, function (err, videoId) {
-    // ...
-  });
-});
-
+  res.send("Hi. This is the page where users can upload video.", 200);
 
 };
