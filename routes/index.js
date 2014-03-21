@@ -27,16 +27,25 @@ exports.uploadVideo = function (req, res) {
 
         var metadata = {
             snippet: {
-                title: 'title',
-                description: 'description'
+                title: 'Perfect Pitch Test Video',
+                description: 'Test Description'
             },
             status: {
                 privacyStatus: 'privacy'
             }
         };
 
-        if (!req.user) { return res.redirect('/login')}
-        else { test.credentials = { access_token: req.user.accessToken }}
+        if (!req.user) { 
+          console.log('## No user currently logged in.');
+          return res.redirect('../');
+        }
+        else { 
+          console.log('## User refreshToken is:', req.user.refreshToken);
+          test.credentials = { 
+            access_token: req.user.accessToken,
+            refresh_token: req.user.refreshToken 
+          }
+        }
 
         client.youtube.videos.insert({
             part: 'snippet,status'

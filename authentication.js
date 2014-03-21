@@ -64,7 +64,8 @@ User.findOne({ oauthID: profile.id }, function(err, user) {
      oauthID: profile.id,
      name: profile.displayName,
      created: Date.now(),
-     accessToken: accessToken
+     accessToken: accessToken,
+     refreshToken: refreshToken
    });
    user.save(function(err) {
      if(err) {
