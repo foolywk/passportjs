@@ -36,8 +36,7 @@ exports.uploadVideo = function (req, res) {
         };
 
         if (!req.user) { return res.redirect('/login')}
-        else { test.credentials = { access_token: req.user.oauthID }}
-
+        else { test.credentials = { access_token: req.user.accessToken }}
 
         client.youtube.videos.insert({
             part: 'snippet,status'

@@ -4,7 +4,8 @@ var mongoose = require('mongoose')
 var User = mongoose.model('User', {
 	oauthID: Number, 
 	name: String, 
-	created: Date
+	created: Date,
+	accessToken: String
 });
 
 module.exports = User;

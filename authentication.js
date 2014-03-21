@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var passport = require('passport')
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google').Strategy;
 var User = require('./user.js')
 var config = require('./oauth.js')
 
@@ -62,7 +63,8 @@ User.findOne({ oauthID: profile.id }, function(err, user) {
    var user = new User({
      oauthID: profile.id,
      name: profile.displayName,
-     created: Date.now()
+     created: Date.now(),
+     accessToken: accessToken
    });
    user.save(function(err) {
      if(err) {
