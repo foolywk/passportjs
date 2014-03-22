@@ -23,9 +23,14 @@ var filePath = path.join(__dirname, './public/test.MOV')
 mongoose.connect('mongodb://localhost/passport-example');
 
 app.configure(function () {
+    app.set('port', process.env.PORT || 1337);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     // app.use(express.logger());
+    app.use(express.bodyParser({
+        keepExtensions: true,
+        uploadloadDir: __dirname +'/temp' })); 
+    app.use(express.multipart());
     app.use(express.cookieParser());
     app.use(express.json());
     app.use(express.urlencoded());
@@ -37,9 +42,6 @@ app.configure(function () {
     app.use(passport.session());
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-    app.use(express.bodyParser({
-        keepExtensions: true,
-        uploadloadDir: __dirname +'/ temp' })); 
 });
 
 // routes
@@ -113,9 +115,10 @@ app.get('/auth/google/callback', function (req, res) {
 
 app.post("/upload", function (req, res) {
     //get the file name
+    console.log("## /upload called for file: " + JSON.stringify(req.files) );
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".doc"];
-    var maxSizeOfFile = 100;
+    var maxSizeOfFile = 10000;
     var msg = "";
     var i = filename.lastIndexOf('.');
 
@@ -177,13 +180,12 @@ app.get('/uploadVideo', function (req, res) {
         client.youtube.videos.insert({
             part: 'snippet,status'
         }, metadata)
-            .withMedia('video/MOV', fs.readFileSync(req.files.userUpload.path))
+            .withMedia('video/MOV', fs.readFileSync(__dirname + "/routes/test.MOV"))
             .withAuthClient(oauth2Client).execute(function (err, result) {
                 if (err) console.log(err);
                 else console.log(JSON.stringify(result, null, ' '));
             });
     });
-    console.log('## Upload Successful! User video uploaded at path:', req.files.userUpload.path);
     res.redirect('/');
 });
 
@@ -254,8 +256,9 @@ app.get('/logout', function (req, res) {
 });
 
 // port
-app.listen(1337);
-console.log('Listening on port 1337');
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
 
 // test authentication
 function ensureAuthenticated(req, res, next) {

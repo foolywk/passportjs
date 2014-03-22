@@ -13,9 +13,10 @@ body
  a(href="/ping") Ping
  br
  br
- form(method="POST", action="/upload", enctype="multipart/form-data")
- input(type="file", name="file")
- input(type="submit", value="Upload")
+ form( action="/upload", method="POST", enctype="multipart/form-data")
+  input(type="file", name="file")
+  input(type="submit", value="Upload")
+ br
  br
  a(href="/uploadVideo") Upload Video
  br
