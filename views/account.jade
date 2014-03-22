@@ -13,14 +13,14 @@ body
  a(href="/ping") Ping
  br
  br
- form(action="...", method="post", enctype="multipart/form-data")
- input(type="file", name="displayImage")
+ form(method="POST", action="/upload", enctype="multipart/form-data")
+ input(type="file", name="file")
+ input(type="submit", value="Upload")
+ br
  a(href="/uploadVideo") Upload Video
  br
  br
  a(href="/logout") Logout
-
-
 
 script(src='http://code.jquery.com/jquery.js')
 script(src='js/bootstrap.min.js')

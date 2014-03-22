@@ -18,40 +18,44 @@ exports.ping = function (req, res) {
     res.send("pong!", 200);
 };
 
-exports.uploadVideo = function (req, res) {
-    console.log('## User object:', req.user);
-    console.log('## Client ID:', clientSecrets.web.client_id);
-    res.send(200);
+exports.upload = function (req, res) {
+    //get the file name
+  var filename=req.files.file.name;
+  var extensionAllowed=[".mov",".doc"];
+  var maxSizeOfFile=100;
+  var msg="";
+  var i = filename.lastIndexOf('.');
 
-    googleapis.discover('youtube', 'v3').execute(function (err, client) {
+  // get the temporary location of the file
+      var tmp_path = req.files.file.path;
+      
+  // set where the file should actually exists - in this case it is in the "images" directory
+      var target_path = __dirname +'/upload/' + req.files.file.name;
 
-        var metadata = {
-            snippet: {
-                title: 'Perfect Pitch Test Video',
-                description: 'Test Description'
-            },
-            status: {
-                privacyStatus: 'privacy'
-            }
-        };
+      var file_extension= (i < 0) ? '' : filename.substr(i);
+  if((file_extension in oc(extensionAllowed))&&((req.files.file.size /1024 )< maxSizeOfFile)){
+  fs.rename(tmp_path, target_path, function(err) {
+          if (err) throw err;
+          // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
+  fs.unlink(tmp_path, function() {
+  if (err) throw err;
+  });
+  });
+  msg="File uploaded sucessfully"
+  }else{
+  // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
+  fs.unlink(tmp_path, function(err) {
+              if (err) throw err;
+          });
+  msg="File upload failed.File extension not allowed and size must be less than "+maxSizeOfFile;
+  }
+  res.end(msg); 
+};
 
-        if (!req.user) { 
-          console.log('## No user currently logged in.');
-          return res.redirect('../');
-        }
-        else { 
-          console.log('## User refreshToken is:', req.user.refreshToken);
-          test.credentials = { 
-            access_token: req.user.accessToken,
-            refresh_token: req.user.refreshToken 
-          }
-        }
-
-        client.youtube.videos.insert({
-            part: 'snippet,status'
-        }, metadata).withMedia('video/MOV', fs.readFileSync(__dirname + '/test.MOV')).withAuthClient(test).execute(function (err, result) {
-            if (err) console.log(err);
-            else console.log(JSON.stringify(result, null, ' '));
-        });
-    });
+function oc(a){
+  var o = {};
+  for(var i=0;i<a.length;i++) {
+    o[a[i]]='';
+  }
+  return o;
 };
