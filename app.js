@@ -15,12 +15,23 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var googleapis = require('googleapis');
 var request = require('request');
 var clientSecrets = require('./client_secrets.json');
-var authTokens;
-
-var filePath = path.join(__dirname, './public/test.MOV')
+var OAuth2 = googleapis.auth.OAuth2;
+var oauth2Client = new OAuth2(
+    clientSecrets.web.client_id,
+    clientSecrets.web.client_secret,
+    "http://127.0.0.1:1337/auth/google/callback");
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
+// set access token from database
+var access_token; 
+User.findOne({ oauthID: '706352243' }, function(err, user) {
+ if(err) { console.log(err); }
+ if (!err && user != null) {
+   access_token = user.accessToken;
+   console.log("## Access token set to ", access_token);
+ }
+});
 
 app.configure(function () {
     app.set('port', process.env.PORT || 1337);
@@ -47,7 +58,6 @@ app.configure(function () {
 // routes
 app.get('/', routes.index);
 app.get('/ping', routes.ping);
-// app.post('/upload', routes.upload);
 app.get('/account', ensureAuthenticated, function (req, res) {
     User.findById(req.session.passport.user, function (err, user) {
         if (err) {
@@ -59,13 +69,17 @@ app.get('/account', ensureAuthenticated, function (req, res) {
         };
     });
 });
-
 app.get('/', function (req, res) {
     res.render('login', {
         user: req.user
     });
 });
-
+app.get('/logout', function (req, res) {
+    var username = JSON.stringify(req.user.name)
+    req.logout();
+    console.log("## User " + username + " has been logged out.");
+    res.redirect('/');
+});
 // fb
 app.get('/auth/facebook',
     passport.authenticate('facebook'),
@@ -77,13 +91,6 @@ app.get('/auth/facebook/callback',
     function (req, res) {
         res.redirect('/account');
     });
-
-var OAuth2 = googleapis.auth.OAuth2;
-var oauth2Client = new OAuth2(
-    clientSecrets.web.client_id,
-    clientSecrets.web.client_secret,
-    "http://127.0.0.1:1337/auth/google/callback");
-
 app.get('/auth/google', function (req, res) {
     var url = oauth2Client.generateAuthUrl({
         access_type: 'offline',
@@ -92,7 +99,6 @@ app.get('/auth/google', function (req, res) {
 
     res.redirect(url);
 });
-
 app.get('/auth/google/callback', function (req, res) {
     console.log('Google callback.', {
         query: req.query,
@@ -107,6 +113,23 @@ app.get('/auth/google/callback', function (req, res) {
             tokens: tokens
         });
         authTokens = tokens;
+
+        User.findOne({ oauthID: '706352243' }, function(err, user) {
+         if(err) { console.log(err); }
+         if (!err && user != null) {
+
+           user.accessToken = authTokens.access_token;
+
+           user.save(function(err) {
+             if(err) {
+               console.log(err);
+             } else {
+               console.log("saving access token to user ...");
+             };
+         });
+         };
+        });
+
         console.log('## AuthTokens:', authTokens);
     });
 
@@ -137,13 +160,38 @@ app.post("/upload", function (req, res) {
                 if (err) throw err;
             });
         });
-        msg = "File uploaded sucessfully"
+        // handle upload to youtube 
+        googleapis.discover('youtube', 'v3').execute(function (err, client) {
+        var metadata = {
+            snippet: {
+                title: 'Perfect Pitch Test Upload',
+                description: 'Test Description'
+            },
+            status: {
+                privacyStatus: 'private'
+            }
+        };
+
+        oauth2Client.credentials = {
+          access_token: access_token
+        } 
+        
+        client.youtube.videos.insert({
+            part: 'snippet,status'
+        }, metadata)
+            .withMedia('video/MOV', fs.readFileSync(target_path))
+            .withAuthClient(oauth2Client).execute(function (err, result) {
+                if (err) console.log(err);
+                else console.log(JSON.stringify(result, null, ' '));
+            });
+        });
+        msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"
     } else {
         // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
         fs.unlink(tmp_path, function (err) {
             if (err) throw err;
         });
-        msg = "File upload failed.File extension not allowed and size must be less than " + maxSizeOfFile;
+        msg = "File upload failed. File extension not allowed and size must be less than " + maxSizeOfFile;
     }
     res.end(msg);
 });
@@ -158,7 +206,7 @@ function oc(a) {
 
 app.get('/uploadVideo', function (req, res) {
 
-    console.log('## uploadVideo called');
+    console.log('## uploadVideo called for ' + JSON.stringify(req.file.files));
 
     googleapis.discover('youtube', 'v3').execute(function (err, client) {
 
@@ -180,78 +228,12 @@ app.get('/uploadVideo', function (req, res) {
         client.youtube.videos.insert({
             part: 'snippet,status'
         }, metadata)
-            .withMedia('video/MOV', fs.readFileSync(__dirname + "/routes/test.MOV"))
+            .withMedia('video/MOV', fs.readFileSync(req.files.file.path))
             .withAuthClient(oauth2Client).execute(function (err, result) {
                 if (err) console.log(err);
                 else console.log(JSON.stringify(result, null, ' '));
             });
     });
-    res.redirect('/');
-});
-
-/*
-  req.login({}, function(err) {
-    if (err) {
-      console.log('Error logging in.', err)
-      return res.redirect('/');
-    }
-
-    req.session.googleAuth = req.query.code;
-    res.redirect('/account');
-  })
-  */
-
-
-/*
-app.get('/auth/google', function(req, res) {
-  var url = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: 'https://www.googleapis.com/auth/plus.me'
-  });
-
-  res.redirect(url);
-});
-
-app.get('/auth/google/callback', function(req, res) {
-  console.log('Google callback.', {
-    query: req.query,
-    body: req.body
-  })
-
-  console.log('session...', req.user)
-  req.login({}, function(err) {
-    if (err) {
-      console.log('Error logging in.', err)
-      return res.redirect('/');
-    }
-
-    req.session.googleAuth = req.query.code;
-    res.redirect('/account');
-  })
-})
-*/
-
-
-/*
-app.get('/auth/google',
-  passport.authenticate('google'),
-  function(req, res){
-});
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  function(req, res) {
-       console.log('Google authenticated.', {
-         query: req.query,
-         body: req.body,
-         param: req.param,
-         params: req.params
-       })
-   res.redirect('/account');
-});
-*/
-
-app.get('/logout', function (req, res) {
-    req.logout();
     res.redirect('/');
 });
 
