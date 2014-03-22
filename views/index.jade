@@ -6,7 +6,7 @@ if (!user)
   br
   a(href="/auth/facebook") Login via Facebook
   br
-  a(href="/auth/google") Login via Google
+  a(href="/auth/google") Google Authentication
 if (user)
   p You are currently logged in as #{user.username}
   a(href="/logout") Logout
