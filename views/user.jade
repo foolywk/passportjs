@@ -1,2 +1,12 @@
 .user
-	h2=user.name
+if(user)
+  h2=user.name
+  form( action="/upload", method="POST", enctype="multipart/form-data")
+   input(type="file", name="file")
+   br
+   input(type="submit", value="Upload")
+   br
+   a(href="/logout") LOGOUT	
+else 
+  a.btn(href='/auth/facebook') LOGIN WITH FACEBOOK
+

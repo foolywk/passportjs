@@ -57,13 +57,12 @@ app.configure(function () {
 
 // routes
 app.get('/', routes.index);
-app.get('/ping', routes.ping);
 app.get('/account', ensureAuthenticated, function (req, res) {
     User.findById(req.session.passport.user, function (err, user) {
         if (err) {
             console.log(err);
         } else {
-            res.render('account', {
+            res.render('index', {
                 user: user
             });
         };
