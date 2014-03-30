@@ -4,9 +4,8 @@ html(lang='en')
     =======================================================================================
       PERFECT PITCH hosted by BRUIN ENTREPRENEURS
     =======================================================================================
-
   head
-    
+
     // Basic Page Needs
     meta(charset='utf-8')
     title Perfect Pitch
@@ -47,47 +46,47 @@ html(lang='en')
           .ha-header-front
             .grid-20.tablet-grid-20.hide-on-mobile
               h1.logo
-                a(href='#top')
-                  img(src='images/logo.png', alt='logo')
+                a(href='#/')
+                  img(src='images/logoWhite.png', alt='logo')
+
             nav#ut-navigation.grid-80.tablet-grid-80.hide-on-mobile
-              a.selected(href='#top') Home
+
+              a.selected(href='/') Home
               a(href='#about-section') About
               a(href='#team-section') Team
               a(href='#service-section') Service
               a(href='#portfolio-section') Work
               a(href='#contact-section') Contact
+              include loginButton
+
+              // a.facebook(href='http://facebook.com/perfectpitchLA')
+              // a.twitter(href='http://twitter.com/perfectpitchLA')
         // close .ha-header-perspective 
       // close grid container 
     // close header 
     .clear
     
     // hero section 
-    section.hero.ha-waypoint.parallax-section.parallax-banner-1.parallax-background(data-animate-up='ha-header-hide', data-animate-down='ha-header-hide')
+    section.hero.ha-waypoint.parallax-section.parallax-banner-1.parallax-background()
       .parallax-overlay.parallax-overlay-1
       .grid-container
         
         // hero holder 
         .hero-holder.grid-70.mobile-grid-100.tablet-grid-100
           .hero-inner
-            span.hero-description 500 Pitches - 24 Finalists - $3,000+ in prizes
-            img.hero-logo(src='images/PerfectPitchLogoWhite_NoBG.png')
+            span.hero-description 500 Pitches - 24 Finalists - $3,000+ prizes
+            img.hero-logo(src='images/logoWhite.png')
             span.hero-description May 2014 - Ucla
-            //
-               Text Blurb 
-            .grid-100.tablet-grid-100.mobile-grid-100.about-box
-              .about-box
-                br
-                p FULL SITE COMING SOON
-            span.btn-holder
-              a#to-about-section.hero-btn Learn More
+            br
             br
             span.btn-holder
-              a.hero-btn(href='/') Submit A Pitch
+              a.hero-btn(href='/login') Submit A Pitch
 
       // close hero-holder 
     // close hero section 
     .clear
     #main-content.wrap
+      
       // Footer Section 
       footer.footer
         a.toTop(href='#top')
@@ -101,13 +100,14 @@ html(lang='en')
               h2. UCLA's Biggest Pitch Competition
 
           .grid-100.tablet-grid-100.mobile-grid-100.about-box
+            
             // ABOUT description 
             .about-box(style='color: #000000;')
               h3
               p
-                span(style='font-weight: bold;') Perfect Pitch
-                | is the biggest student pitch competition at UC Los Angeles, where over 500 students will submit video business pitches in one of three categories. The top eight finalists within each category are then invited to pitch at the
-                span(style='font-weight: bold;') Perfect Pitch
+                span(style='font-weight: bold;') Perfect Pitch 
+                | is the biggest student pitch competition at UC Los Angeles, where over 500 students will submit video business pitches in one of three categories. The top eight finalists within each category are then invited to pitch at the 
+                span(style='font-weight: bold;') Perfect Pitch 
                 | Finale for cash prizes. The objective is to turn UCLA into an “ideas” campus, facilitate innovative thought, and provide opportunity for entrepreneurial problem solving that is accessible to all undergraduate students.
               br
               .container
@@ -118,6 +118,7 @@ html(lang='en')
               p(style='font-size: 12px; color: #000000;') PRESENTED BY
               a(href='http://bruinentrepreneurs.org')
                 img(src='http://s3-us-west-1.amazonaws.com/lahacks/bruin_entrepreneurs.jpg', style='max-width: 500px;')
+      
       // Load Javascript
       script(src='js/jquery.mb.YTPlayer.js')
       script(src='js/jquery.parallax.min.js')

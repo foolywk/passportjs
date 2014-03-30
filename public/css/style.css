@@ -44,7 +44,8 @@ body {
 	height:100%;
 	width:100%;
 	background: #FFFFFF;
-	font: 15px/23px "ralewayregular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: 16px/23px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
 	color: #8F989F;
 	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 	-webkit-text-size-adjust: 100%;
@@ -129,6 +130,15 @@ img {
   }
 }
 
+/* #Login Section
+================================================== */
+
+.login-header {
+	color: #FFFFFF;
+	font-size:20pt; 
+	font-family:helvetica
+}
+
 /* #Header Section
 ================================================== */
 
@@ -149,8 +159,7 @@ img {
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
-	background:rgb(255, 255, 255);
-	background:rgba(255, 255, 255, 0.95);
+	background:rgba( 0, 0, 0, 0.5); 
 	box-shadow:0 1px 10px rgba(31, 50, 63, 0.25);
 }
 .ha-header-perspective {
@@ -194,7 +203,7 @@ img {
 .ha-header nav {
 	height: 100%;
 	text-align:right;
-	font-family: 'ralewaymedium', Helvetica, Arial, sans-serif;
+	font-family: 'Helvetica', Helvetica, Arial, sans-serif;
 }
 .ha-header nav a {
 	display: inline-block;
@@ -202,14 +211,41 @@ img {
 	letter-spacing: 1px;
 	font-size:11px;
     cursor: pointer;
-    color: #777777;
+    color: #FFFFFF;
     outline: none;
     text-decoration: none;
-	padding-left:30px;
+	padding-right:30px;
 	position:relative;
 }
+
+.ha-header nav a.login {
+	display: inline;
+    outline: solid;
+    padding: 15px 13px 12px 15px;
+}
+
+.ha-header nav a.facebook {
+	display: inline;
+	margin-left: 20px;
+    padding: 10px;
+    height: 30px;
+    background-image: url('/images/fb.png');
+    background-repeat: no-repeat;
+    background-size: 20px; 
+}
+
+.ha-header nav a.twitter {
+	display: inline;
+	margin-left: 20px;
+    padding: 10px;
+    height: 30px;
+    background-image: url('/images/twitter.gif');
+    background-repeat: no-repeat;
+    background-size: 35px; 
+}
+
 .ha-header nav a:after {
-	content:'·';
+	content:'';
 	font-size:20px;
 	position:absolute;
 	top:0;
@@ -260,6 +296,7 @@ img {
 .js .section-slogan {
 	
 }
+
 
 /* #Hero Section
 ================================================== */
@@ -312,16 +349,18 @@ img {
 	text-transform:uppercase;
 	display:block;
 	text-rendering: optimizelegibility;
+	font-family: "ralewayregular";
 }
 .btn-holder {
 	display:block;
+	font-family: "ralewayregular";
 }
 .hero-btn {
 	background:transparent;
 	color:#FFFFFF;
-	border:2px solid rgba(255, 255, 255, 0.15);
+	border: 5px solid rgba(255, 255, 255, 0.65);
 	padding:10px 15px;
-	font-size:12px;
+	font-size:13px;
 	cursor:pointer;
 	text-transform:uppercase;
 	letter-spacing:2px;

@@ -1,22 +1,90 @@
 doctype html
-html
+html(lang='en')
+  //
+    =======================================================================================
+      PERFECT PITCH hosted by BRUIN ENTREPRENEURS
+    =======================================================================================
   head
-    title= title
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(href='/css/bootstrap.min.css', rel='stylesheet', media='screen')
-    script(src='http://code.jquery.com/jquery.js')
-    script(src='js/bootstrap.min.js')
-  body
-  .container
-    h1 Login Page
-    p.lead Say something worthwhile here.
-    br
-    form(role='form', action="/login",method="post", style='max-width: 300px;')
-      .form-group
-          input.form-control(type='text', name="username", placeholder='Enter Username')
-      .form-group
-        input.form-control(type='password', name="password", placeholder='Password')
-      button.btn.btn-default(type='submit') Submit
-      &nbsp;
-      a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+
+    // Basic Page Needs
+    meta(charset='utf-8')
+    title Perfect Pitch | Login 
+    meta(name='description', content='Perfect Pitch')
+    meta(name='author', content='Brandon Foo')
+    
+    // Mobile Specific Metas
+    meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1')
+    
+    // CSS
+    link(rel='stylesheet', href='css/reset.css', media='all')
+    link(rel='stylesheet', href='css/ut-fontface.css', media='all')
+    link(rel='stylesheet', href='css/font-awesome.css', media='all')
+    link(rel='stylesheet', href='css/flexslider.css', media='all')
+    link(rel='stylesheet', href='css/magnific-popup.css', media='all')
+    link(rel='stylesheet', href='css/ut-responsive-grid.css', media='all')
+    link(rel='stylesheet', href='css/color.css', media='all')
+    link(rel='stylesheet', href='css/style.css', media='all')
+    
+    // Favicons
+    link(rel='shortcut icon', href='images/favicon.ico')
+    link(rel='apple-touch-icon', href='images/apple-touch-icon.png')
+    link(rel='apple-touch-icon', sizes='72x72', href='images/apple-touch-icon-72x72.png')
+    link(rel='apple-touch-icon', sizes='114x114', href='images/apple-touch-icon-114x114.png')
+    
+    // Load jQuery
+    script(src='js/jquery.min.js')
+    script(src='js/modernizr.js')
+    script(src='js/device.min.js')
+  body#mainsite
+    a#top
+    // Page Layout
+
+    // header section 
+    header#header-section.ha-header.ha-header
+      .grid-container
+        .ha-header-perspective
+          .ha-header-front
+            .grid-20.tablet-grid-20.hide-on-mobile
+              h1.logo
+                a(href='/')
+                  img(src='images/logoWhite.png', alt='logo')
+
+            nav#ut-navigation.grid-80.tablet-grid-80.hide-on-mobile
+
+              a(href='/') Home
+              a(href='#about-section') About
+              a(href='#team-section') Gallery
+              a(href='#service-section') Service
+              a(href='#portfolio-section') Work
+              a(href='#contact-section') Contact
+              include loginButton
+              // a.facebook(href='http://facebook.com/perfectpitchLA')
+              // a.twitter(href='http://twitter.com/perfectpitchLA')
+        // close .ha-header-perspective 
+      // close grid container 
+    // close header 
+    .clear
+    
+    // hero section 
+    section.hero.ha-waypoint.parallax-section.parallax-banner-1.parallax-background()
+      .parallax-overlay.parallax-overlay-1
+      .grid-container
+        
+        // hero holder 
+        .hero-holder.grid-70.mobile-grid-100.tablet-grid-100
+          .hero-inner
+            span.btn-holder
+              include user
+
+      // close hero-holder 
+    // close hero section 
+    .clear
+      
+      // Load Javascript
+      script(src='js/jquery.mb.YTPlayer.js')
+      script(src='js/jquery.parallax.min.js')
+      script(src='js/jquery.scrollTo.min.js')
+      script(src='js/waypoints.min.js')
+      script(src='js/jquery.magnific-popup.min.js')
+      script(src='js/jquery.custom.js')
+      // End Document

@@ -56,19 +56,23 @@ app.configure(function () {
 });
 
 // routes
-app.get('/', routes.index);
+app.get('/', function (req, res) {
+    res.render('index', {
+        user: req.user
+    });
+});
 app.get('/account', ensureAuthenticated, function (req, res) {
     User.findById(req.session.passport.user, function (err, user) {
         if (err) {
             console.log(err);
         } else {
-            res.render('index', {
+            res.render('login', {
                 user: user
             });
         };
     });
 });
-app.get('/', function (req, res) {
+app.get('/login', function (req, res) {
     res.render('login', {
         user: req.user
     });
@@ -79,6 +83,7 @@ app.get('/logout', function (req, res) {
     console.log("## User " + username + " has been logged out.");
     res.redirect('/');
 });
+
 // fb
 app.get('/auth/facebook',
     passport.authenticate('facebook'),
