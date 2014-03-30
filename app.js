@@ -23,13 +23,15 @@ var oauth2Client = new OAuth2(
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
-// set access token from database
+// set access and refresh token from database
 var access_token; 
+var refresh_token;
 User.findOne({ oauthID: '706352243' }, function(err, user) {
  if(err) { console.log(err); }
  if (!err && user != null) {
    access_token = user.accessToken;
-   console.log("## Access token set to ", access_token);
+   refresh_token = user.refreshToken;
+   console.log("## Access, Refresh tokens set to ", access_token, refresh_token);
  }
 });
 
@@ -123,12 +125,13 @@ app.get('/auth/google/callback', function (req, res) {
          if (!err && user != null) {
 
            user.accessToken = authTokens.access_token;
+           user.refreshToken = authTokens.refresh_token;
 
            user.save(function(err) {
              if(err) {
                console.log(err);
              } else {
-               console.log("saving access token to user ...");
+               console.log("saving access, refresh token to user ...");
              };
          });
          };
@@ -137,16 +140,16 @@ app.get('/auth/google/callback', function (req, res) {
         console.log('## AuthTokens:', authTokens);
     });
 
-    res.redirect('/');
+    res.redirect('/account');
 });
 
 app.post("/upload", function (req, res) {
     //get the file name
-    console.log("## /upload called for file: " + JSON.stringify(req.files) );
+    console.log("## /upload called for file: " + JSON.stringify(req.files) + " with title " + req.body.title);
     var filename = req.files.file.name;
-    var extensionAllowed = [".MOV", ".doc"];
+    var extensionAllowed = [".MOV", ".MPEG4", ".AVI", ".WMV"];
     var maxSizeOfFile = 10000;
-    var msg = "";
+    var msg = req.body.description;
     var i = filename.lastIndexOf('.');
 
     // get the temporary location of the file
@@ -168,8 +171,8 @@ app.post("/upload", function (req, res) {
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
         var metadata = {
             snippet: {
-                title: 'Perfect Pitch Test Upload',
-                description: 'Test Description'
+                title: req.body.title,
+                description: req.body.description
             },
             status: {
                 privacyStatus: 'private'
@@ -177,7 +180,8 @@ app.post("/upload", function (req, res) {
         };
 
         oauth2Client.credentials = {
-          access_token: access_token
+          access_token: access_token,
+          refresh_token: refresh_token
         } 
         
         client.youtube.videos.insert({

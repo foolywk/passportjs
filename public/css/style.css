@@ -135,8 +135,85 @@ img {
 
 .login-header {
 	color: #FFFFFF;
-	font-size:20pt; 
-	font-family:helvetica
+	font-size: 20pt; 
+	font-family: helvetica;
+	font-weight: bolder;
+}
+
+/* #Account Section
+================================================== */
+
+.account-title {
+	font-size:4em;
+	margin-bottom:10px;
+	text-transform:uppercase;
+	text-align:center;
+	display:inline-block;
+	color: #ffffff;
+	font-family: helvetica;
+	font-weight: bolder;
+	letter-spacing: -3px;
+}
+
+.account-header {
+	color: #FFFFFF;
+	letter-spacing: -1px;
+	font-size: 24pt; 
+	font-family: helvetica;
+	font-weight: bolder;
+}
+
+.account-section {
+	color: #FFFFFF;
+	font-family:helvetica;
+	font-weight: bolder;
+	position:relative;
+	padding-bottom:150px;
+}
+.account-section .parallax-header {
+	padding-bottom:70px !important;
+}
+.account-section .section-title span {
+	background:#F1F4F5;
+}
+.account-wrap {
+	color:#FFFFFF;
+}
+
+.account-message {
+	color: #FFFFFF;
+	padding:20px 20px 10px;
+	font-size:12px;
+	letter-spacing:1px;
+	background:rgba(255, 255, 255, 0.15);
+	font-family: helvetica;
+	font-weight: bolder;
+}
+
+.account-message h5 {
+	color: #FFFFFF;
+	padding:20px 20px 10px;
+	font-size:12px;
+	letter-spacing:1px;
+	font-family: helvetica;
+	font-weight: bolder;
+}
+.account-message ul li {
+	margin-bottom:10px;
+}
+.account-form-holder {
+	padding:20px;
+	background:rgba(255, 255, 255, 0.15);
+	font-family: helvetica;
+	font-weight: bolder;
+	color: #FFFFFF;
+}
+
+.logout-btn {
+	color: #FFFFFF;
+	font-size: 12pt;
+	font-family: helvetica;
+	font-weight: bolder;
 }
 
 /* #Header Section
@@ -792,7 +869,7 @@ img {
 	color:#FFFFFF;
 }
 .js .contact-wrap {
-	opacity:0;
+	opacity:1;
 }
 .contact-message {
 	padding:20px 20px 10px;

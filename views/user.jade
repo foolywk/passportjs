@@ -1,13 +1,40 @@
 .user
 if(user)
-  h2=user.name
-  form( action="/upload", method="POST", enctype="multipart/form-data")
-   input(type="file", name="file")
-   br
-   input(type="submit", value="Upload")
-   br
-   a(href="/logout") LOGOUT	
-else 
+  .grid-container
+    .hero-holder.grid-70.mobile-grid-100.tablet-grid-100
+      .hero-inner
+          h1.account-title=user.name
+        .hero-title-holder
+          span.hero-description User Account
+      .account-message
+        h2.account-header.grid-100 SUBMIT A PITCH
+          form( action="/upload", method="POST", enctype="multipart/form-data")
+           br
+           ul.grid-50
+             li
+               input#name.name(type='text', name='title', placeholder='Pitch Title:')
+             li
+               input#email.email(type='text', name='major', placeholder='Major:')
+             li
+               input#phone.phone(type='text', name='year', placeholder='Graduation Year:')
+           ul.grid-50
+             li
+               textarea#message.message(name='description', placeholder='Short Description:')
+           h5 Please upload your video pitch in .MOV or .MP4 format. Pitches should be approximately 1-2 minutes in length and less than 100MB in size. 
+           input(type="file", name="file")     
+           br
+           br 
+           input(type="submit", value="Submit")
+           br
+      br      
+      span.btn-holder
+        if(user.oauthID=706352243)
+          a.hero-btn(href="/auth/google") Google Authentication        
+          br
+          br
+        a.hero-btn(href="/logout") Logout
+
+ else 
   span.login-header Login to submit a pitch or view your submitted pitches. 
   br
   br  		
