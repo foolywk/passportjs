@@ -143,6 +143,21 @@ img {
 /* #Account Section
 ================================================== */
 
+.account {
+	height:100%;
+	min-height:100%;
+	position:relative;
+	overflow:scroll;
+	z-index:750;
+} 
+.account .hero-holder {
+	display:inline-block;
+	position:absolute;
+	top:15%;
+	left:0%;
+	width:820px;
+	max-width:100%;
+} 
 .account-title {
 	font-size:4em;
 	margin-bottom:10px;
@@ -385,7 +400,7 @@ img {
 	overflow:hidden;
 	text-align:center;
 	z-index:750;
-}
+} 
 .hero .hero-holder {
 	display:inline-block;
 	position:absolute;
@@ -396,7 +411,7 @@ img {
 	transform:translate(-50%, -50%);
 	width:820px;
 	max-width:100%;
-}
+} 
 .js .hero .hero-holder {
 	opacity:0;
 }

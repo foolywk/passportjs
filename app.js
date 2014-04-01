@@ -5,8 +5,9 @@ var express = require('express');
 var routes = require('./routes');
 var path = require('path');
 var app = express();
-var config = require('./oauth.js')
-var User = require('./user.js')
+var config = require('./oauth.js');
+var User = require('./user.js');
+var Video = require('./video.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var fbAuth = require('./authentication.js')
@@ -16,16 +17,18 @@ var googleapis = require('googleapis');
 var request = require('request');
 var clientSecrets = require('./client_secrets.json');
 var OAuth2 = googleapis.auth.OAuth2;
+var youtube = require('youtube-video');
 var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
     "http://127.0.0.1:1337/auth/google/callback");
+var access_token; 
+var refresh_token;
 
 // connect to the database
 mongoose.connect('mongodb://localhost/passport-example');
-// set access and refresh token from database
-var access_token; 
-var refresh_token;
+
+// set access and refresh token from database (stored in admin's account)
 User.findOne({ oauthID: '706352243' }, function(err, user) {
  if(err) { console.log(err); }
  if (!err && user != null) {
@@ -40,9 +43,9 @@ app.configure(function () {
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     // app.use(express.logger());
-    app.use(express.bodyParser({
+    /* app.use(express.bodyParser({
         keepExtensions: true,
-        uploadloadDir: __dirname +'/temp' })); 
+        uploadloadDir: __dirname +'/temp' })); */
     app.use(express.multipart());
     app.use(express.cookieParser());
     app.use(express.json());
@@ -97,9 +100,12 @@ app.get('/auth/facebook/callback',
     function (req, res) {
         res.redirect('/account');
     });
+
+// google
 app.get('/auth/google', function (req, res) {
     var url = oauth2Client.generateAuthUrl({
         access_type: 'offline',
+        approval_prompt: 'force',
         scope: 'https://www.googleapis.com/auth/youtube.upload'
     });
 
@@ -136,11 +142,8 @@ app.get('/auth/google/callback', function (req, res) {
          });
          };
         });
-
-        console.log('## AuthTokens:', authTokens);
     });
-
-    res.redirect('/account');
+    res.redirect('/');
 });
 
 app.post("/upload", function (req, res) {
@@ -149,7 +152,7 @@ app.post("/upload", function (req, res) {
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".MPEG4", ".AVI", ".WMV"];
     var maxSizeOfFile = 10000;
-    var msg = req.body.description;
+    var msg = "";
     var i = filename.lastIndexOf('.');
 
     // get the temporary location of the file
@@ -178,12 +181,12 @@ app.post("/upload", function (req, res) {
                 privacyStatus: 'private'
             }
         };
-
+        // pass auth, refresh tokens
         oauth2Client.credentials = {
           access_token: access_token,
           refresh_token: refresh_token
         } 
-        
+
         client.youtube.videos.insert({
             part: 'snippet,status'
         }, metadata)
@@ -191,6 +194,41 @@ app.post("/upload", function (req, res) {
             .withAuthClient(oauth2Client).execute(function (err, result) {
                 if (err) console.log(err);
                 else console.log(JSON.stringify(result, null, ' '));
+
+                // save uploaded video to db
+                 var video = new Video({
+                   id: result.id,
+                   title: result.snippet.title,
+                   publishedAt: result.snippet.publishedAt,
+                   owner: req.user
+                 });
+                 video.save(function(err) {
+                   if(err) {
+                     console.log(err);
+                   } else {
+                     console.log("saved new video: ", JSON.stringify(video, null, "\t"));
+                     // done(null, video);
+                   };
+                 }); 
+
+                // save upload video to its owner, update year & major     
+                User.findOne({ oauthID: req.user.oauthID}, function(err, user) {
+                 if(err) { console.log(err); }
+                 if (!err && user != null) {
+
+                   user.videos.push(video); 
+                   user.major = req.body.major;
+                   user.year = req.body.year;
+
+                   user.save(function(err) {
+                     if(err) {
+                       console.log(err);
+                     } else {
+                       console.log("saving uploaded video to user...");
+                     };
+                 });
+                 };
+                });               
             });
         });
         msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"
