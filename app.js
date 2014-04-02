@@ -17,7 +17,7 @@ var googleapis = require('googleapis');
 var request = require('request');
 var clientSecrets = require('./client_secrets.json');
 var OAuth2 = googleapis.auth.OAuth2;
-var youtube = require('youtube-video');
+// var youtube = require('youtube-video');
 var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,

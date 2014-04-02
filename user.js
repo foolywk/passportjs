@@ -8,7 +8,7 @@ var User = mongoose.model('User', {
 	created: Date,
 	accessToken: String,
 	refreshToken: String,
-	videos: []
+	videos: [],
 	major: String,
 	year: String
 });
