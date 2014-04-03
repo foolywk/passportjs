@@ -44,7 +44,7 @@ app.configure(function () {
     app.set('view engine', 'jade');
     // app.use(express.logger());
     /* app.use(express.bodyParser({
-        keepExtensions: true,
+        keepExtensions: true, 
         uploadloadDir: __dirname +'/temp' })); */
     app.use(express.multipart());
     app.use(express.cookieParser());
