@@ -1,4 +1,5 @@
 .user
+
 if(user)
   // hero section 
   section.account.ha-waypoint.parallax-section.parallax-banner-1.parallax-background(style="overflow:scroll")
@@ -23,7 +24,7 @@ if(user)
                li
                  input#email.email(type='text', name='major', placeholder='Major:')
                li
-                 input#phone.phone(type='text', name='year', placeholder='Graduation Year:')
+                 input#phone.phone(type='text', name='year', placeholder='Graduation Year:')      
              ul.grid-50
                li
                  textarea#message.message(name='description', placeholder='Pitch Description: ')
@@ -33,6 +34,11 @@ if(user)
              br 
              input(type="submit", value="Submit")
              br
+
+        each video, i in user.videos
+          .grid-50
+            embed(width='380', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0', style='margin: 10px') 
+
         br      
         span.btn-holder
           if(user.oauthID=706352243)

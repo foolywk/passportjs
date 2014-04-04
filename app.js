@@ -17,7 +17,7 @@ var googleapis = require('googleapis');
 var request = require('request');
 var clientSecrets = require('./client_secrets.json');
 var OAuth2 = googleapis.auth.OAuth2;
-// var youtube = require('youtube-video');
+var youtube = require('youtube-video');
 var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
@@ -48,8 +48,8 @@ app.configure(function () {
         uploadloadDir: __dirname +'/temp' })); */
     app.use(express.multipart());
     app.use(express.cookieParser());
-    app.use(express.json());
-    app.use(express.urlencoded());
+    // app.use(express.json());
+    app.use(express.urlencoded()); 
     app.use(express.methodOverride());
     app.use(express.session({
         secret: 'my_precious'
@@ -218,7 +218,7 @@ app.post("/upload", function (req, res) {
 
                    user.videos.push(video); 
                    user.major = req.body.major;
-                   user.year = req.body.year;
+                   user.year = req.body.year; 
 
                    user.save(function(err) {
                      if(err) {
@@ -228,7 +228,7 @@ app.post("/upload", function (req, res) {
                      };
                  });
                  };
-                });               
+                });                
             });
         });
         msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"
