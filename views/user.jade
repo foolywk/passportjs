@@ -37,6 +37,8 @@ if(user)
 
         each video, i in user.videos
           .grid-50
+            h2.account-header=video.title
+            h5=video.description
             embed(width='380', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0', style='margin: 10px') 
 
         br      

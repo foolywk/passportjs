@@ -17,7 +17,7 @@ var googleapis = require('googleapis');
 var request = require('request');
 var clientSecrets = require('./client_secrets.json');
 var OAuth2 = googleapis.auth.OAuth2;
-var youtube = require('youtube-video');
+// var youtube = require('youtube-video');
 var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
@@ -93,6 +93,7 @@ app.get('/logout', function (req, res) {
 app.get('/auth/facebook',
     passport.authenticate('facebook'),
     function (req, res) {});
+
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/'
@@ -111,6 +112,7 @@ app.get('/auth/google', function (req, res) {
 
     res.redirect(url);
 });
+
 app.get('/auth/google/callback', function (req, res) {
     console.log('Google callback.', {
         query: req.query,
@@ -199,6 +201,7 @@ app.post("/upload", function (req, res) {
                  var video = new Video({
                    id: result.id,
                    title: result.snippet.title,
+                   description: result.snippet.description,
                    publishedAt: result.snippet.publishedAt,
                    owner: req.user
                  });
@@ -217,8 +220,8 @@ app.post("/upload", function (req, res) {
                  if (!err && user != null) {
 
                    user.videos.push(video); 
-                   user.major = req.body.major;
-                   user.year = req.body.year; 
+                   // user.major = req.body.major;
+                   // user.year = req.body.year; 
 
                    user.save(function(err) {
                      if(err) {

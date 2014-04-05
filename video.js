@@ -6,6 +6,7 @@ var Video = new Schema({
 	id: String, 
 	title: String,
 	publishedAt: Date,
+	description: String,
 	owner: User
 });
 
