@@ -176,8 +176,8 @@ app.post("/upload", function (req, res) {
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
         var metadata = {
             snippet: {
-                title: req.body.title,
-                description: req.body.description
+                // title: req.body.title,
+                // description: req.body.description
             },
             status: {
                 privacyStatus: 'private'
