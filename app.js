@@ -34,7 +34,7 @@ User.findOne({ oauthID: '706352243' }, function(err, user) {
  if (!err && user != null) {
    access_token = user.accessToken;
    refresh_token = user.refreshToken;
-   console.log("## Access, Refresh tokens set to ", access_token, refresh_token);
+   console.log("## Access token set to " + access_token + "\n" + "## Refresh token set to " + refresh_token);
  }
 });
 
@@ -150,7 +150,9 @@ app.get('/auth/google/callback', function (req, res) {
 
 app.post("/upload", function (req, res) {
     //get the file name
-    console.log("## /upload called for file: " + JSON.stringify(req.files) + " with title " + req.body.title);
+    console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2) 
+        + "\n## Title: " + req.body.title 
+        + "\n## Description: " + req.body.description);
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".MPEG4", ".AVI", ".WMV"];
     var maxSizeOfFile = 10000;
@@ -164,6 +166,7 @@ app.post("/upload", function (req, res) {
     var target_path = __dirname + '/upload/' + req.files.file.name;
 
     var file_extension = (i < 0) ? '' : filename.substr(i);
+
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
         fs.rename(tmp_path, target_path, function (err) {
             if (err) throw err;
@@ -176,8 +179,8 @@ app.post("/upload", function (req, res) {
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
         var metadata = {
             snippet: {
-                // title: req.body.title,
-                // description: req.body.description
+                title: req.body.title,
+                description: req.body.description
             },
             status: {
                 privacyStatus: 'private'
