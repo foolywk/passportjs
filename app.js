@@ -149,6 +149,7 @@ app.get('/auth/google/callback', function (req, res) {
 });
 
 app.post("/upload", function (req, res) {
+
     //get the file name
     console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2) 
         + "\n## Title: " + req.body.title 
@@ -193,7 +194,7 @@ app.post("/upload", function (req, res) {
         } 
 
         client.youtube.videos.insert({
-            part: 'snippet,status'
+            part: 'snippet, status'
         }, metadata)
             .withMedia('video/MOV', fs.readFileSync(target_path))
             .withAuthClient(oauth2Client).execute(function (err, result) {
@@ -216,7 +217,7 @@ app.post("/upload", function (req, res) {
                      // done(null, video);
                    };
                  }); 
-
+                
                 // save upload video to its owner, update year & major     
                 User.findOne({ oauthID: req.user.oauthID}, function(err, user) {
                  if(err) { console.log(err); }
@@ -234,7 +235,7 @@ app.post("/upload", function (req, res) {
                      };
                  });
                  };
-                });                
+                });               
             });
         });
         msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"

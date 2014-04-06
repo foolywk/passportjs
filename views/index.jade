@@ -24,6 +24,7 @@ html(lang='en')
     link(rel='stylesheet', href='css/ut-responsive-grid.css', media='all')
     link(rel='stylesheet', href='css/color.css', media='all')
     link(rel='stylesheet', href='css/style.css', media='all')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700' type='text/css')  
     
     // Favicons
     link(rel='shortcut icon', href='images/favicon.ico')
@@ -33,7 +34,7 @@ html(lang='en')
     
     // Load jQuery
     script(src='js/jquery.min.js')
-    script(src='js/modernizr.js')
+    //script(src='js/modernizr.js')
     script(src='js/device.min.js')
   body#mainsite
     a#top
@@ -51,11 +52,10 @@ html(lang='en')
 
             nav#ut-navigation.grid-80.tablet-grid-80.hide-on-mobile
 
-              a.selected(href='/') Home
+              a.selected(href='#top') Home
               a(href='#about-section') About
-              a(href='#team-section') Team
-              a(href='#service-section') Service
-              a(href='#portfolio-section') Work
+              a(href='#rules-section') Rules
+              a(href='#portfolio-section') Gallery
               a(href='#contact-section') Contact
               include loginButton
 
@@ -74,7 +74,7 @@ html(lang='en')
         // hero holder 
         .hero-holder.grid-70.mobile-grid-100.tablet-grid-100
           .hero-inner
-            span.hero-description 500 Pitches - 24 Finalists - $3,000+ prizes
+            span.hero-description 500 Pitches - 15 Finalists - $3,000+ prizes
             img.hero-logo(src='images/logoWhite.png')
             span.hero-description May 2014 - Ucla
             br
@@ -82,41 +82,106 @@ html(lang='en')
             span.btn-holder
               include submitButton
 
+        .hero-footer.grid-100.mobile-grid-100.tablet-grid-100           
+            p 
+              span(style="vertical-align: -50%; color: #AAAAAA") presented by
+              a(href='http://bruinentrepreneurs.org')
+                img(src='http://s3-us-west-1.amazonaws.com/lahacks/bruin_entrepreneurs.jpg', style='max-width: 300px; margin-top:10px')
+
+
+
       // close hero-holder 
     // close hero section 
     .clear
-    #main-content.wrap
-      
-      // Footer Section 
-      footer.footer
+    #main-content.wrap   
+      // 
+        ABOUT SECTION
+        =======================================================================================
+
+      section#about-section.about
         a.toTop(href='#top')
           i.icon-angle-up
         .grid-container
 
           // ABOUT header 
-          .grid-70.prefix-15.mobile-grid-100.tablet-grid-100
-            header.section-header(style='padding: 0px;')
-              h2.section-title ABOUT
-              h2. UCLA's Biggest Pitch Competition
-
-          .grid-100.tablet-grid-100.mobile-grid-100.about-box
+          .grid-70.mobile-grid-100.tablet-grid-100
+            header.section-header
+              h2.section-title About
+              h2.section-subtitle The biggest pitch competition at UCLA
             
             // ABOUT description 
             .about-box(style='color: #000000;')
               h3
               p
                 span(style='font-weight: bold;') Perfect Pitch 
-                | is the biggest student pitch competition at UC Los Angeles, where over 500 students will submit video business pitches in one of three categories. The top eight finalists within each category are then invited to pitch at the 
-                span(style='font-weight: bold;') Perfect Pitch 
-                | Finale for cash prizes. The objective is to turn UCLA into an “ideas” campus, facilitate innovative thought, and provide opportunity for entrepreneurial problem solving that is accessible to all undergraduate students.
+                | is a pitch competition to foster entrepreneurial talent, facilitate creative problem solving, and promote the sharing of ideas at UCLA. 
+                br
+                br
+                | UCLA students can 
+                span(style='font-weight: bold;') pitch an idea via video submission 
+                | in one of three categories, and 5 finalists from each category will then be selected to present their pitch at our final summit event on May 29th to win $3,000 in prizes. 
+                br
+                
               br
+          .grid-100.mobile-grid-100.tablet-grid-100
+            h2.section-subtitle(style='text-align:center') Pitch Categories
+            .grid-25.prefix-5.mobile-grid-33.category(style='border-bottom-color: #5947b6; color: #5947b6')
+              p Technology 
+            .grid-25.prefix-5.mobile-grid-33.category(style='border-bottom-color: #bd634c; color: #bd634c')
+              p Non-Technology   
+            .grid-25.prefix-5.mobile-grid-33.category.c(style='border-bottom-color: #52c467; color: #52c467')
+              p Social Entrepreneurship
 
-            // Presented by BE 
-            .about-box
-              p(style='font-size: 12px; color: #000000;') PRESENTED BY
-              a(href='http://bruinentrepreneurs.org')
-                img(src='http://s3-us-west-1.amazonaws.com/lahacks/bruin_entrepreneurs.jpg', style='max-width: 500px;')
-      
+
+    // 
+      CATEGORIES PARALLAX BANNER 
+      =======================================================================================
+
+      section#parallax-section-2.parallax-section.parallax-banner-2.parallax-background.parallax-section-2.ha-waypoint
+        .parallax-overlay.parallax-overlay-2
+        .grid-container.parallax-content
+          //
+             parallax header 
+          .grid-40.prefix-60.mobile-grid-100.tablet-grid-100
+            header.parallax-header
+              h2.section-title(style='color:#ffffff') Pitch Categories
+
+          .grid-25.mobile-grid-100.tablet-grid-25
+            .counter-box.counter(data-counter='1270')
+              span.count 1270
+              h3.counter-details Lore Ipsum
+
+
+
+    // 
+      RULES SECTION
+      =======================================================================================
+
+    section#rules-section.rules
+      a.toTop(href='#top')
+        i.icon-angle-up
+      .grid-container
+
+        // RULES header 
+        .grid-100.mobile-grid-100.tablet-grid-100
+          header.section-header(style='padding: 0px;')
+            h2.section-title Rules
+            h2.section-subtitle for video submission 
+          
+          // RULES description 
+          .about-box(style='color: #000000;')
+            h3
+            p 
+              ol
+                li Pitch must be no more than 60 seconds Must not use inappropriate language (including but not limited to racist, sexist, sexual, violent, discriminatory and/or cursing language)
+                li Must not have received prior funding for idea
+                li Every speaker is allowed to submit a maximum of 3 submissions
+                li Candidates may collaborate in teams; however, only one person can present and only the presenter’s or company's name alone will be recognized
+                li No props or visual aids of any kind are allowed during presentation
+                li If the idea crosses over multiple categories, candidates are allowed to submit the same pitch to a maximum of two category; note that each pitch may only be selected once for the final round
+                li Presenter must be a UCLA student available to attend both the pitch workshop and the finale event
+            br                
+    
       // Load Javascript
       script(src='js/jquery.mb.YTPlayer.js')
       script(src='js/jquery.parallax.min.js')
