@@ -1,1 +1,1 @@
-web: node app.js --enviornment=production
+web: node app.js --environment=production
