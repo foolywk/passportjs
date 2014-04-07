@@ -22,11 +22,16 @@ var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
     "http://127.0.0.1:1337/auth/google/callback");
+var argv = require('optimist').argv;
 var access_token; 
 var refresh_token;
 
-// connect to the database
-mongoose.connect('mongodb://localhost/passport-example');
+// choose production and development environments, connect to corresponding db
+if ((argv.environment != null) && argv.environment === 'production') {
+    mongoose.connect('mongodb://Brandon:b8e3d3e6b6b98b2cf23580f585e96352@ds037997.mongolab.com:37997/heroku_app23832724');
+} else {
+    mongoose.connect('mongodb://localhost/passport-example');
+}
 
 // set access and refresh token from database (stored in admin's account)
 User.findOne({ oauthID: '706352243' }, function(err, user) {
