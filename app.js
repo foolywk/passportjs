@@ -28,7 +28,8 @@ var refresh_token;
 
 // choose production and development environments, connect to corresponding db
 if ((argv.environment != null) && argv.environment === 'production') {
-    mongoose.connect('mongodb://Brandon:b8e3d3e6b6b98b2cf23580f585e96352@ds037997.mongolab.com:37997/heroku_app23832724');
+    mongoose.connect('mongodb://heroku_app23832724:b2bb11567f8f8242106063493c563779.mongolab.com:37997/heroku_app23832724');
+    console.log('Connecting to cloud mongoDB server...');
 } else {
     mongoose.connect('mongodb://localhost/passport-example');
 }
@@ -158,7 +159,8 @@ app.post("/upload", function (req, res) {
     //get the file name
     console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2) 
         + "\n## Title: " + req.body.title 
-        + "\n## Description: " + req.body.description);
+        + "\n## Description: " + req.body.description 
+        + "\n\n presented by " + user.name);
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".MPEG4", ".AVI", ".WMV"];
     var maxSizeOfFile = 10000;

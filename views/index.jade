@@ -104,7 +104,7 @@ html(lang='en')
         .grid-container
 
           // ABOUT header 
-          .grid-70.mobile-grid-100.tablet-grid-100
+          .grid-85.prefix-5.mobile-grid-100.tablet-grid-100
             header.section-header
               h2.section-title About
               h2.section-subtitle The biggest pitch competition at UCLA
@@ -119,18 +119,12 @@ html(lang='en')
                 br
                 | UCLA students can 
                 span(style='font-weight: bold;') pitch an idea via video submission 
-                | in one of three categories, and 5 finalists from each category will then be selected to present their pitch at our final summit event on May 29th to win $3,000 in prizes. 
+                | in one of three categories: 
+                span(style='font-weight: bold;') Technology, Non-Technology, and Social Entrepreneurship. 
+                | 5 finalists from each category will then be selected to present their pitch at the final summit event on May 29th to win $3,000 in prizes. 
                 br
                 
               br
-          .grid-100.mobile-grid-100.tablet-grid-100
-            h2.section-subtitle(style='text-align:center') Pitch Categories
-            .grid-25.prefix-5.mobile-grid-33.category(style='border-bottom-color: #5947b6; color: #5947b6')
-              p Technology 
-            .grid-25.prefix-5.mobile-grid-33.category(style='border-bottom-color: #bd634c; color: #bd634c')
-              p Non-Technology   
-            .grid-25.prefix-5.mobile-grid-33.category.c(style='border-bottom-color: #52c467; color: #52c467')
-              p Social Entrepreneurship
 
 
     // 
@@ -144,49 +138,28 @@ html(lang='en')
              parallax header 
           .grid-40.prefix-60.mobile-grid-100.tablet-grid-100
             header.parallax-header
-              h2.section-title(style='color:#ffffff') Pitch Categories
+              h2.section-title(style='color:#ffffff') 
 
-          .grid-25.mobile-grid-100.tablet-grid-25
-            .counter-box.counter(data-counter='1270')
-              span.count 1270
-              h3.counter-details Lore Ipsum
+          .grid-33.mobile-grid-100.tablet-grid-25(style='color:#ffffff')
+            .counter-box.counter
+              h3.section-title Technology
+              body Hardware, software, web, and mobile applications
+          .grid-33.mobile-grid-100.tablet-grid-25
+            .counter-box.counter
+              h3.section-title Non-Technology
+              body Consumer Products and Services        
+          .grid-33.mobile-grid-100.tablet-grid-25
+            .counter-box.counter
+              h3.section-title Social Entrepreneurship
+              body Solutions to social, cultural, or environmental issues
 
-
-
-    // 
-      RULES SECTION
-      =======================================================================================
-
-    section#rules-section.rules
-      a.toTop(href='#top')
-        i.icon-angle-up
-      .grid-container
-
-        // RULES header 
-        .grid-100.mobile-grid-100.tablet-grid-100
-          header.section-header(style='padding: 0px;')
-            h2.section-title Rules
-            h2.section-subtitle for video submission 
-          
-          // RULES description 
-          .about-box(style='color: #000000;')
-            h3
-            p 
-              ol
-                li Pitch must be no more than 60 seconds Must not use inappropriate language (including but not limited to racist, sexist, sexual, violent, discriminatory and/or cursing language)
-                li Must not have received prior funding for idea
-                li Every speaker is allowed to submit a maximum of 3 submissions
-                li Candidates may collaborate in teams; however, only one person can present and only the presenter’s or company's name alone will be recognized
-                li No props or visual aids of any kind are allowed during presentation
-                li If the idea crosses over multiple categories, candidates are allowed to submit the same pitch to a maximum of two category; note that each pitch may only be selected once for the final round
-                li Presenter must be a UCLA student available to attend both the pitch workshop and the finale event
-            br                
+  
     
-      // Load Javascript
-      script(src='js/jquery.mb.YTPlayer.js')
-      script(src='js/jquery.parallax.min.js')
-      script(src='js/jquery.scrollTo.min.js')
-      script(src='js/waypoints.min.js')
-      script(src='js/jquery.magnific-popup.min.js')
-      script(src='js/jquery.custom.js')
-      // End Document
+    // Load Javascript
+    script(src='js/jquery.mb.YTPlayer.js')
+    script(src='js/jquery.parallax.min.js')
+    script(src='js/jquery.scrollTo.min.js')
+    script(src='js/waypoints.min.js')
+    script(src='js/jquery.magnific-popup.min.js')
+    script(src='js/jquery.custom.js')
+    // End Document

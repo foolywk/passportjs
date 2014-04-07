@@ -137,16 +137,16 @@ img {
 .login-header {
 	color: #FFFFFF;
 	font-size: 20pt; 
-	font-family: helvetica;
-	font-weight: bolder;
+	font-family: Roboto Condensed;
+	font-weight: 400;
 }
 
 /* #Account Section
 ================================================== */
 
 .account {
-	height:100%;
-	min-height:100%;
+	height:;
+	min-height:800px;
 	position:relative;
 	overflow:scroll;
 	z-index:750;
@@ -223,6 +223,10 @@ img {
 	font-family: helvetica;
 	font-weight: bolder;
 	color: #FFFFFF;
+}
+
+.video-title {
+	margin-left: px;
 }
 
 .logout-btn {
@@ -475,6 +479,8 @@ img {
 .btn-holder {
 	display:block;
 	font-family: "ralewayregular";
+	width:50%;
+	margin: 0 auto;
 }
 .hero-btn {
 	background:transparent;
@@ -491,6 +497,8 @@ img {
 	-webkit-transition:0.2s background linear;
 		-moz-transition:0.2s background linear;
 			transition:0.2s background linear;
+	width: 50%;
+	maring: 0 auto;		
 }
 .hero-btn:hover {
 	color:#FFFFFF;
@@ -1070,7 +1078,7 @@ img {
 	background-attachment: fixed !important;
 }
 .parallax-banner-1 { background:url('../images/losangeles.jpg'); background-position: center center; }
-.parallax-banner-2 { background:url('../images/powell.jpg'); background-position: center center;}
+.parallax-banner-2 { background:url('../images/losangeles.jpg'); background-position: center center;}
 .parallax-banner-3 { background:url('../images/parallax-banner-3.jpg'); }
 .parallax-banner-4 { background:url('../images/parallax-banner-4.jpg'); background-position:center bottom !important; }
 .parallax-banner-5 { background:url('../images/parallax-banner-5.jpg'); }
