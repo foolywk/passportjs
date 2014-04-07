@@ -1,3 +1,14 @@
+var argv = require('optimist').argv;
+
+// choose production and development environments, connect to corresponding db
+if ((argv.environment != null) && argv.environment === 'production') {
+  process.env.NODE_ENV = 'production';
+} else {
+  process.env.NODE_ENV = 'development';
+}
+
+var mongoose = require('mongoose');
+
 // dependencies
 var fs = require('fs');
 var http = require('http');
@@ -8,7 +19,6 @@ var app = express();
 var config = require('./oauth.js');
 var User = require('./user.js');
 var Video = require('./video.js');
-var mongoose = require('mongoose');
 var passport = require('passport');
 var fbAuth = require('./authentication.js')
 var LocalStrategy = require('passport-local').Strategy;
@@ -23,9 +33,10 @@ var oauth2Client = new OAuth2(
     clientSecrets.web.client_secret,
     "http://127.0.0.1:1337/auth/google/callback");
 var argv = require('optimist').argv;
-var access_token; 
+var access_token;
 var refresh_token;
 
+/*
 // choose production and development environments, connect to corresponding db
 if ((argv.environment != null) && argv.environment === 'production') {
     mongoose.connect('mongodb://heroku_app23832724:b2bb11567f8f8242106063493c563779.mongolab.com:37997/heroku_app23832724');
@@ -33,6 +44,7 @@ if ((argv.environment != null) && argv.environment === 'production') {
 } else {
     mongoose.connect('mongodb://localhost/passport-example');
 }
+*/
 
 // set access and refresh token from database (stored in admin's account)
 User.findOne({ oauthID: '706352243' }, function(err, user) {
@@ -50,12 +62,12 @@ app.configure(function () {
     app.set('view engine', 'jade');
     // app.use(express.logger());
     /* app.use(express.bodyParser({
-        keepExtensions: true, 
+        keepExtensions: true,
         uploadloadDir: __dirname +'/temp' })); */
     app.use(express.multipart());
     app.use(express.cookieParser());
     // app.use(express.json());
-    app.use(express.urlencoded()); 
+    app.use(express.urlencoded());
     app.use(express.methodOverride());
     app.use(express.session({
         secret: 'my_precious'
@@ -157,10 +169,16 @@ app.get('/auth/google/callback', function (req, res) {
 app.post("/upload", function (req, res) {
 
     //get the file name
+<<<<<<< HEAD
     console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2) 
         + "\n## Title: " + req.body.title 
         + "\n## Description: " + req.body.description 
         + "\n\n presented by " + user.name);
+=======
+    console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2)
+        + "\n## Title: " + req.body.title
+        + "\n## Description: " + req.body.description);
+>>>>>>> 09ae2aad69b0a4fcfd69480b55791fe5e81d9fd9
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".MPEG4", ".AVI", ".WMV"];
     var maxSizeOfFile = 10000;
@@ -183,7 +201,7 @@ app.post("/upload", function (req, res) {
                 if (err) throw err;
             });
         });
-        // handle upload to youtube 
+        // handle upload to youtube
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
         var metadata = {
             snippet: {
@@ -198,7 +216,7 @@ app.post("/upload", function (req, res) {
         oauth2Client.credentials = {
           access_token: access_token,
           refresh_token: refresh_token
-        } 
+        }
 
         client.youtube.videos.insert({
             part: 'snippet, status'
@@ -223,16 +241,16 @@ app.post("/upload", function (req, res) {
                      console.log("saved new video: ", JSON.stringify(video, null, "\t"));
                      // done(null, video);
                    };
-                 }); 
-                
-                // save upload video to its owner, update year & major     
+                 });
+
+                // save upload video to its owner, update year & major
                 User.findOne({ oauthID: req.user.oauthID}, function(err, user) {
                  if(err) { console.log(err); }
                  if (!err && user != null) {
 
-                   user.videos.push(video); 
+                   user.videos.push(video);
                    // user.major = req.body.major;
-                   // user.year = req.body.year; 
+                   // user.year = req.body.year;
 
                    user.save(function(err) {
                      if(err) {
@@ -242,7 +260,7 @@ app.post("/upload", function (req, res) {
                      };
                  });
                  };
-                });               
+                });
             });
         });
         msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"

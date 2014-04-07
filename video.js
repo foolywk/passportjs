@@ -1,13 +1,16 @@
-var mongoose = require('mongoose');
+var config = require('./mongoConfig');
+var mongoose = config.mongoose;
+var db = config.connect();
+
 var User = require('./user.js');
 var Schema = mongoose.Schema;
 
-var Video = new Schema({ 
-	id: String, 
+var Video = new Schema({
+	id: String,
 	title: String,
 	publishedAt: Date,
-	description: String,
-	owner: User
+	description: String
+	//owner: User
 });
 
-module.exports = mongoose.model('Video', Video);
+module.exports = db.model('Video', Video);
