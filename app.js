@@ -36,16 +36,6 @@ var argv = require('optimist').argv;
 var access_token;
 var refresh_token;
 
-/*
-// choose production and development environments, connect to corresponding db
-if ((argv.environment != null) && argv.environment === 'production') {
-    mongoose.connect('mongodb://heroku_app23832724:b2bb11567f8f8242106063493c563779.mongolab.com:37997/heroku_app23832724');
-    console.log('Connecting to cloud mongoDB server...');
-} else {
-    mongoose.connect('mongodb://localhost/passport-example');
-}
-*/
-
 // set access and refresh token from database (stored in admin's account)
 User.findOne({ oauthID: '706352243' }, function(err, user) {
  if(err) { console.log(err); }
@@ -169,16 +159,9 @@ app.get('/auth/google/callback', function (req, res) {
 app.post("/upload", function (req, res) {
 
     //get the file name
-<<<<<<< HEAD
-    console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2) 
-        + "\n## Title: " + req.body.title 
-        + "\n## Description: " + req.body.description 
-        + "\n\n presented by " + user.name);
-=======
     console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2)
         + "\n## Title: " + req.body.title
         + "\n## Description: " + req.body.description);
->>>>>>> 09ae2aad69b0a4fcfd69480b55791fe5e81d9fd9
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".MPEG4", ".AVI", ".WMV"];
     var maxSizeOfFile = 10000;
