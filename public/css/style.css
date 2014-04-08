@@ -306,7 +306,8 @@ img {
 	display: inline-block;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-size:11px;
+	font-family: "Roboto Condensed";
+	font-size:12px;
     cursor: pointer;
     color: #FFFFFF;
     outline: none;
@@ -487,6 +488,7 @@ img {
 	color:#FFFFFF;
 	border: 5px solid rgba(255, 255, 255, 0.65);
 	padding:10px 15px;
+	font-family: "Roboto Condensed";
 	font-size:13px;
 	cursor:pointer;
 	text-transform:uppercase;
@@ -498,7 +500,7 @@ img {
 		-moz-transition:0.2s background linear;
 			transition:0.2s background linear;
 	width: 50%;
-	maring: 0 auto;		
+	margin: 0 auto;		
 }
 .hero-btn:hover {
 	color:#FFFFFF;
