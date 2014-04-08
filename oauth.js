@@ -7,7 +7,7 @@ var ids = {
 
 	google: {
 		returnURL: 'http://perfect-pitch.herokuapp.com/auth/google/callback',
-		realm: 'http://127.0.0.1:1337'
+		realm: 'http://perfect-pitch.herokuapp.com'
 	}
 }
 module.exports = ids
