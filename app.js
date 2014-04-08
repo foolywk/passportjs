@@ -179,7 +179,7 @@ app.post("/upload", function (req, res) {
     var file_extension = (i < 0) ? '' : filename.substr(i);
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
-/*        
+        
         fs.rename(tmp_path, target_path, function (err) {
             if (err) throw err;
             // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
@@ -187,7 +187,6 @@ app.post("/upload", function (req, res) {
                 if (err) throw err;
             });
         });
-*/
 
         // handle upload to youtube
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
@@ -210,7 +209,7 @@ app.post("/upload", function (req, res) {
         client.youtube.videos.insert({
             part: 'snippet, status'
         }, metadata)
-            .withMedia('video/MOV', fs.readFileSync(tmp_path))
+            .withMedia('video/MOV', fs.readFileSync(target_path))
             .withAuthClient(oauth2Client).execute(function (err, result) {
                 if (err) console.log(err);
                 else console.log(JSON.stringify(result, null, ' '));
