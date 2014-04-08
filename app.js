@@ -172,7 +172,7 @@ app.post("/upload", function (req, res) {
 
     // get the temporary location of the file
     var tmp_path = req.files.file.path;
-
+/*
     // set where the file should actually exists - in this case it is in the "images" directory
     var target_path = __dirname + '/upload/' + req.files.file.name;
 
@@ -186,6 +186,8 @@ app.post("/upload", function (req, res) {
                 if (err) throw err;
             });
         });
+*/
+
         // handle upload to youtube
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
         var metadata = {
@@ -206,7 +208,7 @@ app.post("/upload", function (req, res) {
         client.youtube.videos.insert({
             part: 'snippet, status'
         }, metadata)
-            .withMedia('video/MOV', fs.readFileSync(target_path))
+            .withMedia('video/MOV', fs.readFileSync(tmp_path))
             .withAuthClient(oauth2Client).execute(function (err, result) {
                 if (err) console.log(err);
                 else console.log(JSON.stringify(result, null, ' '));
