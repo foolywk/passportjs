@@ -31,7 +31,7 @@ var OAuth2 = googleapis.auth.OAuth2;
 var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
-    "http://127.0.0.1:1337/auth/google/callback");
+    "http://perfect-pitch.com/herokuapp.com/auth/google/callback");
 var argv = require('optimist').argv;
 var access_token;
 var refresh_token;
