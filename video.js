@@ -10,7 +10,7 @@ var Video = new Schema({
 	title: String,
 	publishedAt: Date,
 	description: String,
-	categoroy: String
+	category: String
 	// owner: User
 });
 
