@@ -18,7 +18,7 @@ if(user)
             span.hero-description User Account
             br
         .account-message
-          h2.account-header.grid-100 SUBMIT A PITCH
+          h2.account-header.grid-100.section-subtitle SUBMIT A PITCH
             form( action="/upload", method="POST", enctype="multipart/form-data")
              br
              ul.grid-50
@@ -71,6 +71,7 @@ if(user)
       =======================================================================================            
 
   section#submissions-section  
+  .grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
     // .section-title My Submissions
     br        
     each video, i in user.videos
@@ -79,6 +80,10 @@ if(user)
             embed(width='380', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
             br
             body=video.description
+    
+    // 
+      LOGOUT BUTTON
+      =======================================================================================    
 
   section#parallax-section-2.parallax-section.parallax-banner-2.parallax-background.parallax-section-2.ha-waypoint
     .parallax-overlay.parallax-overlay-2
