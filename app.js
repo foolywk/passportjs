@@ -172,13 +172,14 @@ app.post("/upload", function (req, res) {
 
     // get the temporary location of the file
     var tmp_path = req.files.file.path;
-/*
+
     // set where the file should actually exists - in this case it is in the "images" directory
     var target_path = __dirname + '/upload/' + req.files.file.name;
 
     var file_extension = (i < 0) ? '' : filename.substr(i);
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
+/*        
         fs.rename(tmp_path, target_path, function (err) {
             if (err) throw err;
             // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
@@ -199,6 +200,7 @@ app.post("/upload", function (req, res) {
                 privacyStatus: 'private'
             }
         };
+
         // pass auth, refresh tokens
         oauth2Client.credentials = {
           access_token: access_token,
