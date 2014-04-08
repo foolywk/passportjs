@@ -11,7 +11,7 @@ var Video = new Schema({
 	publishedAt: Date,
 	description: String,
 	categoroy: String,
-	owner: User
+	// owner: User
 });
 
 module.exports = db.model('Video', Video);
