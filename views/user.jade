@@ -83,7 +83,7 @@ if(user)
     .grid-container.parallax-content
       .grid-85.prefix-15.mobile-grid-100.tablet-grid-100(style='padding: 20px')
         span.btn-holder()
-          if(user.oauthID='706352243')
+          if user.oauthID == '706352243'
             a.hero-btn(href="/auth/google" style="font-family: Roboto Condensed") Google Authentication        
             br
             br
