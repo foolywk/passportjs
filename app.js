@@ -101,7 +101,7 @@ app.get('/logout', function (req, res) {
 
 // fb
 app.get('/auth/facebook',
-    passport.authenticate('facebook'),
+    passport.authenticate('facebook', {scope: ['email', 'publish_stream']}),
     function (req, res) {});
 
 app.get('/auth/facebook/callback',
