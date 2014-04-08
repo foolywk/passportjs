@@ -32,7 +32,7 @@ var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
     // "http://127.0.0.1:1337/auth/google/callback"
-    "http://perfect-pitch.com/auth/google/callback");
+    "http://perfect-pitch.herokuapp.com/auth/google/callback");
     
 var argv = require('optimist').argv;
 var access_token;
