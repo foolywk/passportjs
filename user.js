@@ -6,7 +6,7 @@ var db = config.connect();
 var User = mongoose.model('User', {
 	oauthID: Number,
 	name: String,
-	email: String
+	email: String,
 	created: Date,
 	accessToken: String,
 	refreshToken: String,
