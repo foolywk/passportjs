@@ -10,7 +10,7 @@ var User = mongoose.model('User', {
 	created: Date,
 	accessToken: String,
 	refreshToken: String,
-	videos: [],
+	videos: []
 });
 
 module.exports = db.model('User', User);
