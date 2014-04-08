@@ -6,12 +6,11 @@ var db = config.connect();
 var User = mongoose.model('User', {
 	oauthID: Number,
 	name: String,
+	email: String
 	created: Date,
 	accessToken: String,
 	refreshToken: String,
 	videos: [],
-	major: String,
-	year: String
 });
 
 module.exports = db.model('User', User);
