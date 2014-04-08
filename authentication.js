@@ -35,7 +35,7 @@ function(accessToken, refreshToken, profile, done) {
      var user = new User({
        oauthID: profile.id,
        name: profile.displayName,
-       email: profile.emails[0], 
+       email: profile.emails[0].value, 
        created: Date.now()
      });
      user.save(function(err) {
