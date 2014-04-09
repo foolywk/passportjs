@@ -194,7 +194,7 @@ app.post("/upload", function (req, res) {
         var metadata = {
             snippet: {
                 title: req.body.title,
-                description: req.body.description
+                description: req.body.description,
                 category: req.body.category
             },
             status: {
