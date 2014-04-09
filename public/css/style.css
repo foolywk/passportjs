@@ -436,10 +436,6 @@ img {
 .js .hero .hero-holder {
 	opacity:0;
 }
-
-.js .hero .grid-container {
-	opacity:0;
-}
 .hero-title-holder {
 	background-attachment: scroll;
 	background-image: url('../images/divider1.png');
