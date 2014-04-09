@@ -34,13 +34,14 @@ if(user)
           p Record a video of yourself giving a 1-2 minute long business pitch and submit it using the form below. 
           | Enter the title, category and a short description of your pitch when uploading the video file. 
           | A good short pitch should cover the following areas:
+          br
           br 
           | -What is the problem being addressed by the product/service? 
           br 
           | -What is the solution to this problem that the product/service provides? 
           br 
           | -What is the market for the product or service? 
-
+          br
           p You can review the rules for submission 
             a(href='/#rules-section') here.
 
@@ -59,23 +60,12 @@ if(user)
            ul.grid-50
              li
                input#name.name(type='text', name='title', placeholder='Pitch Title:')
-             
-             .dropdown
-                a(href="#", data-toggle="dropdown").dropdown-toggle Dropdown trigger
-                ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu')
-                  li
-                    a(href='#', tabindex='-1') Action
-                  li 
-                    a(href='#', tabindex='-1') Something else here
-                  li.divider
-                  li
-                    a(href='#', tabindex='-1') Separated link
-            script.
-              $('.dropdown-toggle').dropdown()
-            
-
             li
-               input#phone.phone(type='text', name='year', placeholder='Graduation Year:')      
+               input(type='radio', name='category', value='Technology') Technology    
+            li
+               input(type='radio', name='category', value='Non-Technology') Non-Technology 
+            li
+               input(type='radio', name='category', value='Social Entrepreneurship') Social Entrepreneurship                             
            ul.grid-50
              li
                textarea#message.message(name='description', placeholder='Pitch Description: ')
