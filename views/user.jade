@@ -18,7 +18,7 @@ if(user)
             span.hero-description User Account
 
   // 
-    RULES SECTION
+    INSTRUCTIONS
     =======================================================================================
 
   section#rules-section.rules
@@ -29,34 +29,24 @@ if(user)
       // RULES header 
       .grid-85.prefix-5.mobile-grid-100.tablet-grid-100
         .section-title Instructions
+        br
+        br
         .account-box(style="color:#000000")
           p Record a video of yourself giving a 1-2 minute long business pitch and submit it using the form below. 
           | Enter the title, category and a short description of your pitch when uploading the video file. 
           | A good short pitch should cover the following areas:
           ul
-            li What is the problem being addressed by the product/service? 
-            li What is the solution to this problem that the product/service provides? 
-            li What is the market for the product or service? 
+            li 
+              | What is the problem being addressed by the product/service? 
+            li 
+              | What is the solution to this problem that the product/service provides? 
+            li 
+              | What is the market for the product or service? 
           p You can review the rules for submission 
-          a(href='/#rules-section')  here.
+            a(href='/#rules-section') here.
 
     // 
-      MY SUBMISSIONS
-      =======================================================================================            
-
-  section#submissions-section  
-  .grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
-    // .section-title My Submissions
-    br        
-    each video, i in user.videos
-          .grid-50
-            h2.section-subtitle.video-title=video.title
-            embed(style="height:300px" width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
-            br
-            body=video.description
-    
-    // 
-      LOGOUT BUTTON
+      SUBMISSION FORM 
       =======================================================================================    
 
   section#parallax-section-2.parallax-section.parallax-banner-2.parallax-background.parallax-section-2.ha-waypoint
@@ -85,6 +75,28 @@ if(user)
            input(type="submit", value="Submit")
            br
 
+    // 
+      MY SUBMISSIONS
+      =======================================================================================            
+
+  section#submissions-section  
+  .grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
+    // .section-title My Submissions
+    br        
+    each video, i in user.videos
+          .grid-50
+            h2.section-subtitle.video-title=video.title
+            embed(style="height:300px" width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
+            br
+            body=video.description
+
+    // 
+      LOGOUT BUTTON
+      =======================================================================================         
+
+  section#parallax-section-2.parallax-section.parallax-banner-2.parallax-background.parallax-section-2.ha-waypoint
+    .parallax-overlay.parallax-overlay-2
+    .grid-container.parallax-content
 
       .grid-85.prefix-15.mobile-grid-100.tablet-grid-100(style='padding: 20px')
 
