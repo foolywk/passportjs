@@ -163,7 +163,8 @@ app.post("/upload", function (req, res) {
     //get the file name
     console.log("## /upload called for file: " + JSON.stringify(req.files, undefined, 2)
         + "\n## Title: " + req.body.title
-        + "\n## Description: " + req.body.description);
+        + "\n## Description: " + req.body.description
+        + "\n## Category " + req.body.category);
     var filename = req.files.file.name;
     var extensionAllowed = [".MOV", ".MP4", ".AVI", ".WMV"];
     var maxSizeOfFile = 100000;
