@@ -48,7 +48,7 @@ User.findOne({ oauthID: '706352243' }, function(err, user) {
  }
 });
 
-// app.configure(function () {
+app.configure(function () {
     app.set('port', process.env.PORT || 1337);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
@@ -68,7 +68,7 @@ User.findOne({ oauthID: '706352243' }, function(err, user) {
     app.use(passport.session());
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-// });
+ });
 
 // routes
 app.get('/', function (req, res) {
