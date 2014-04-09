@@ -87,7 +87,7 @@ if(user)
 
   section#submissions-section  
   .grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
-    .section-title My Pitches
+    .section-title(style="color:#000000") My Pitches
     br        
     each video, i in user.videos
           .grid-50(style="padding: 15px 0px 15px 0px")
@@ -96,11 +96,11 @@ if(user)
             br
             body(style="font-weight:bold") Category
             br
-            body=video.category
+            body(style="font-weight:regular")=video.category
             br 
             body(style="font-weight:bold") Description 
             br  
-            body=video.description
+            body(style="font-weight:regular")=video.description
 
     // 
       LOGOUT BUTTON

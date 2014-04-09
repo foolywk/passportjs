@@ -436,6 +436,10 @@ img {
 .js .hero .hero-holder {
 	opacity:0;
 }
+
+.js .hero .grid-container {
+	opacity:0;
+}
 .hero-title-holder {
 	background-attachment: scroll;
 	background-image: url('../images/divider1.png');
@@ -1372,6 +1376,9 @@ textarea:focus {
 }
 .slider .parallax-overlay,
 .slider .hero-holder {
+	z-index:500;
+}
+.slider .grid-container {
 	z-index:500;
 }
 .remove-bottom { margin-bottom: 0 !important; }
