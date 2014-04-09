@@ -42,6 +42,7 @@ if(user)
           br 
           | -What is the market for the product or service? 
           br
+          br
           p You can review the rules for submission 
             a(href='/#rules-section') here.
 
@@ -93,6 +94,12 @@ if(user)
             h2.section-subtitle.video-title=video.title
             embed(style="height:300px" width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
             br
+            body(style="font-weight:bold") Category
+            br
+            body=video.category
+            br 
+            body(style="font-weight:bold") Description 
+            br  
             body=video.description
 
     // 

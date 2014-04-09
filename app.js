@@ -286,7 +286,7 @@ app.get('/uploadVideo', function (req, res) {
                 description: 'Test Description'
             },
             status: {
-                privacyStatus: 'private'
+                privacyStatus: 'public'
             }
         };
 
