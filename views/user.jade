@@ -72,7 +72,7 @@ if(user)
 
 
       .account-message
-        h2.account-header.grid-100.section-subtitle SUBMIT A PITCH
+        h2.account-header.grid-100.section-subtitle(style='color:#ffffff') SUBMIT A PITCH
           form( action="/upload", method="POST", enctype="multipart/form-data")
            br
            ul.grid-50
@@ -85,14 +85,15 @@ if(user)
            ul.grid-50
              li
                textarea#message.message(name='description', placeholder='Pitch Description: ')
-           h5 Please upload your video pitch in .MOV or .MP4 format. Pitches should be approximately 1-2 minutes in length and less than 100MB in size. 
+
+           h5.video-instructions Please upload files in .mov format and no greater than 100mb. 
            input(type="file", name="file")     
            br
            br 
            input(type="submit", value="Submit")
            br
 
-            
+
       .grid-85.prefix-15.mobile-grid-100.tablet-grid-100(style='padding: 20px')
 
         span.btn-holder()
