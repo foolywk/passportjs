@@ -10,8 +10,8 @@ var Video = new Schema({
 	title: String,
 	publishedAt: Date,
 	description: String,
-	category: String
-	// owner: User
+	category: String,
+	owner: User
 });
 
 module.exports = db.model('Video', Video);

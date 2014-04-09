@@ -179,7 +179,7 @@ app.post("/upload", function (req, res) {
     var file_extension = (i < 0) ? '' : filename.substr(i);
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
-        
+
 /*        
         fs.rename(tmp_path, target_path, function (err) {
             if (err) throw err;
@@ -218,7 +218,7 @@ app.post("/upload", function (req, res) {
                 // save uploaded video to db
                  var video = new Video({
                    id: result.id,
-                   title: result.snippet.title,
+                   title: req.user.name + " - " + result.snippet.title,
                    description: result.snippet.description,
                    publishedAt: result.snippet.publishedAt,
                    // owner: req.user
