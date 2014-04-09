@@ -11,7 +11,6 @@ if(user)
       
       // hero holder 
       .hero-holder.grid-70.mobile-grid-100.tablet-grid-100
-
         .hero-inner
             h1.account-title=user.name
           .hero-title-holder
@@ -21,10 +20,10 @@ if(user)
     INSTRUCTIONS
     =======================================================================================
 
-  section#rules-section.rules
+  section#instructions-section.rules
     a.toTop(href='#top')
       i.icon-angle-up
-    .grid-container
+    .grid-container(style="padding: 15px 0px 15px 0px")
 
       // RULES header 
       .grid-85.prefix-5.mobile-grid-100.tablet-grid-100
@@ -36,12 +35,10 @@ if(user)
           | Enter the title, category and a short description of your pitch when uploading the video file. 
           | A good short pitch should cover the following areas:
           ul
-            li 
-              | What is the problem being addressed by the product/service? 
-            li 
-              | What is the solution to this problem that the product/service provides? 
-            li 
-              | What is the market for the product or service? 
+            li: p What is the problem being addressed by the product/service? 
+            li: p What is the solution to this problem that the product/service provides? 
+            li: p What is the market for the product or service? 
+
           p You can review the rules for submission 
             a(href='/#rules-section') here.
 
@@ -81,10 +78,10 @@ if(user)
 
   section#submissions-section  
   .grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
-    // .section-title My Submissions
+    .section-title My Pitches
     br        
     each video, i in user.videos
-          .grid-50
+          .grid-50(style="padding: 15px 0px 15px 0px")
             h2.section-subtitle.video-title=video.title
             embed(style="height:300px" width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
             br
