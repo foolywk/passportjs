@@ -218,10 +218,10 @@ app.post("/upload", function (req, res) {
                 // save uploaded video to db
                  var video = new Video({
                    id: result.id,
-                   title: req.user.name + " | " + result.snippet.title,
+                   title: result.snippet.title,
                    description: result.snippet.description,
                    publishedAt: result.snippet.publishedAt,
-                   owner = req.user
+                   owner = req.user._id
                  });
 
                  video.save(function(err) {
