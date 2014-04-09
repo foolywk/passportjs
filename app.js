@@ -221,7 +221,7 @@ app.post("/upload", function (req, res) {
                    title: result.snippet.title,
                    description: result.snippet.description,
                    publishedAt: result.snippet.publishedAt,
-                   owner = req.user._id
+                   owner: req.user._id
                  });
 
                  video.save(function(err) {
