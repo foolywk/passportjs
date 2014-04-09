@@ -16,8 +16,6 @@ if(user)
             h1.account-title=user.name
           .hero-title-holder
             span.hero-description User Account
-            br
-
 
   // 
     RULES SECTION
@@ -58,7 +56,7 @@ if(user)
     each video, i in user.videos
           .grid-50
             h2.section-subtitle.video-title=video.title
-            embed(width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
+            embed(style="height:300px" width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
             br
             body=video.description
     
