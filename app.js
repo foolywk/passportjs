@@ -195,6 +195,7 @@ app.post("/upload", function (req, res) {
             snippet: {
                 title: req.body.title,
                 description: req.body.description
+                category: req.body.category
             },
             status: {
                 privacyStatus: 'private'
@@ -220,6 +221,7 @@ app.post("/upload", function (req, res) {
                    id: result.id,
                    title: result.snippet.title,
                    description: result.snippet.description,
+                   category: result.snippet.category,
                    publishedAt: result.snippet.publishedAt,
                    owner: req.user._id
                  });
