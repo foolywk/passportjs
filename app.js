@@ -194,8 +194,7 @@ app.post("/upload", function (req, res) {
         var metadata = {
             snippet: {
                 title: req.body.title,
-                description: req.body.description,
-                category: req.body.category
+                description: req.body.description
             },
             status: {
                 privacyStatus: 'private'
@@ -221,7 +220,7 @@ app.post("/upload", function (req, res) {
                    id: result.id,
                    title: result.snippet.title,
                    description: result.snippet.description,
-                   category: result.snippet.category,
+                   category: req.body.category,
                    publishedAt: result.snippet.publishedAt,
                    owner: req.user._id
                  });
