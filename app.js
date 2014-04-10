@@ -8,7 +8,6 @@ if ((argv.environment != null) && argv.environment === 'production') {
 }
 
 var mongoose = require('mongoose');
-var db = mongoose.connection;
 
 // dependencies
 var fs = require('fs');
@@ -77,7 +76,7 @@ app.configure(function () {
 app.get('/', function (req, res) {
     res.render('index', {
         user: req.user
-        videos: db.videos.find()
+        videos: Video.prototype.collection;
     });
 });
 app.get('/account', ensureAuthenticated, function (req, res) {
