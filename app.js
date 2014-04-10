@@ -74,14 +74,17 @@ app.configure(function () {
 
 // routes
 app.get('/', function (req, res) {
-    res.render('index', {
-        user: req.user,
-        var videosArray = {};
+    
+    var videosArray = {};
+        
         Video.find({}, function (err, videos) {
          videos.forEach(function(video) {
               videoArray[video] = video;
          }
         });
+    
+    res.render('index', {
+        user: req.user,
         videos: videoArray;   
     });
 });
