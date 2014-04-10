@@ -85,7 +85,7 @@ app.get('/', function (req, res) {
     
     res.render('index', {
         user: req.user,
-        videos: videoArray;   
+        videos: videoArray   
     });
 });
 app.get('/account', ensureAuthenticated, function (req, res) {
