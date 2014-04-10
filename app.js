@@ -80,9 +80,11 @@ app.get('/', function (req, res) {
     Video.find({}, function (err, videos) {
          videos.forEach(function(video) {
               videoArray[video] = video;
-              console.log("\n## VIDEO: " + video + " added to array.");
+              console.log();
          });
     });
+
+    console.print("\n## VIDEOS: " + videoArray);
     
     res.render('index', {
         user: req.user,
