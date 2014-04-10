@@ -69,7 +69,7 @@ app.configure(function () {
     app.use(passport.session());
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-    
+
  });
 
 // routes
@@ -200,7 +200,7 @@ app.post("/upload", function (req, res) {
                 description: req.body.description
             },
             status: {
-                privacyStatus: 'private'
+                privacyStatus: 'public'
             }
         };
 
@@ -257,15 +257,17 @@ app.post("/upload", function (req, res) {
                 });
             });
         });
-        msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"
+        // msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"
+        res.render('success')
     } else {
         // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
         fs.unlink(tmp_path, function (err) {
             if (err) throw err;
         });
-        msg = "File upload failed. File extension not allowed and size must be less than " + maxSizeOfFile;
+        // msg = "File upload failed. File extension not allowed and size must be less than " + maxSizeOfFile;
+        res.render('failure');
     }
-    res.end(msg);
+    
 });
 
 function oc(a) {
@@ -275,39 +277,6 @@ function oc(a) {
     }
     return o;
 }
-
-app.get('/uploadVideo', function (req, res) {
-
-    console.log('## uploadVideo called for ' + JSON.stringify(req.file.files));
-
-    googleapis.discover('youtube', 'v3').execute(function (err, client) {
-
-        var metadata = {
-            snippet: {
-                title: 'Perfect Pitch Test Upload',
-                description: 'Test Description'
-            },
-            status: {
-                privacyStatus: 'public'
-            }
-        };
-
-        console.log('## AuthTokens:', authTokens);
-        oauth2Client.credentials = {
-            access_token: authTokens.access_token
-        }
-
-        client.youtube.videos.insert({
-            part: 'snippet,status'
-        }, metadata)
-            .withMedia('video/MOV', fs.readFileSync(req.files.file.path))
-            .withAuthClient(oauth2Client).execute(function (err, result) {
-                if (err) console.log(err);
-                else console.log(JSON.stringify(result, null, ' '));
-            });
-    });
-    res.redirect('/');
-});
 
 // port
 http.createServer(app).listen(app.get('port'), function(){
