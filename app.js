@@ -76,7 +76,13 @@ app.configure(function () {
 app.get('/', function (req, res) {
     res.render('index', {
         user: req.user,
-        videos: Video.find()
+        var videosArray = {};
+        Video.find({}, function (err, videos) {
+         videos.forEach(function(video) {
+              videoArray[video] = video;
+         }
+        });
+        videos: videoArray;   
     });
 });
 app.get('/account', ensureAuthenticated, function (req, res) {
@@ -183,7 +189,6 @@ app.post("/upload", function (req, res) {
     var file_extension = (i < 0) ? '' : filename.substr(i);
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
-
 /*        
         fs.rename(tmp_path, target_path, function (err) {
             if (err) throw err;
