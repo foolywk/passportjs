@@ -77,9 +77,6 @@ app.get('/', function (req, res) {
     res.render('index', {
         user: req.user,
         videos: Video.find()
-        for (var i=0; i<videos.length; i++) {
-            console.log(videos[i]);
-        }
     });
 });
 app.get('/account', ensureAuthenticated, function (req, res) {
