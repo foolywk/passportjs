@@ -80,6 +80,7 @@ app.get('/', function (req, res) {
     Video.find({}, function (err, videos) {
          videos.forEach(function(video) {
               videoArray[video] = video;
+              console.log("\n## video: " + video + " added to array.");
          });
     });
     
