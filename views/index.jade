@@ -59,7 +59,7 @@ html(lang='en')
               a(href='#about-section') About
               // a(href='#rules-section') Rules
               a(href='#gallery-section') Gallery
-              a(href='#contact-section') Contact
+              a(href='#cta-section') Contact
               include loginButton
 
         // close .ha-header-perspective 
@@ -105,7 +105,7 @@ html(lang='en')
         .grid-container
 
           // ABOUT header 
-          .grid-85.prefix-10.mobile-grid-100.tablet-grid-100
+          .grid-90.prefix-5.mobile-grid-100.tablet-grid-100
             header.section-header
               h2.section-title About
               h2.section-subtitle The biggest pitch competition at UCLA
@@ -157,7 +157,7 @@ html(lang='en')
         .grid-container    
           
           // GALLERY header
-          .grid.-85.prefix-10.mobile-grid-100.tablet-grid-100
+          .grid.-90.prefix-5.mobile-grid-100.tablet-grid-100
             header.section-header
             h2.section-title(style="color:#000000") Gallery
             br        
@@ -174,32 +174,15 @@ html(lang='en')
                   body(style="color:#999")=video.description
 
     // 
-      CATEGORIES PARALLAX BANNER 
+      CONTACT SECTION
       =======================================================================================
 
-      section#parallax-section-2.parallax-section.parallax-banner-2.parallax-background.parallax-section-2.ha-waypoint
-        .parallax-overlay.parallax-overlay-2
-        .grid-container.parallax-content
-          //
-             parallax header 
-          .grid-40.prefix-60.mobile-grid-100.tablet-grid-100
-            header.parallax-header
-              h2.section-title(style='color:#ffffff') 
+    section#cta-section.cta-section.content-section
+      .grid-container
+        .grid-70.prefix-15.mobile-grid-100.tablet-grid-100
+          span.cta-btn.cl-effect-18
+            a.cl-effect-18(href='mailto:contact@perfectpitch.io') Drop us a line
 
-          .grid-33.mobile-grid-100.tablet-grid-25(style='color:#ffffff')
-            .counter-box.counter
-              h3.section-title Technology
-              body Hardware, software, web, and mobile applications
-          .grid-33.mobile-grid-100.tablet-grid-25
-            .counter-box.counter
-              h3.section-title Non-Technology
-              body Consumer Products and Services        
-          .grid-33.mobile-grid-100.tablet-grid-25
-            .counter-box.counter
-              h3.section-title Social Entrepreneurship
-              body Solutions to social, cultural, or environmental issues
-
-  
     
     // Load Javascript
     script(src='js/jquery.mb.YTPlayer.js')
