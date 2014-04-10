@@ -434,7 +434,7 @@ img {
 	max-width:100%;
 } 
 .js .hero .hero-holder {
-	opacity:0;
+	opacity:1;
 }
 .hero-title-holder {
 	background-attachment: scroll;
