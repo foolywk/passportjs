@@ -258,16 +258,19 @@ app.post("/upload", function (req, res) {
             });
         });
         // msg = "File " + JSON.stringify(req.files.file.name) + " successfully uploaded to youtube!"
-        res.render('success')
+        res.render('success', {
+            user: req.user
+        });
     } else {
         // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
         fs.unlink(tmp_path, function (err) {
             if (err) throw err;
         });
         // msg = "File upload failed. File extension not allowed and size must be less than " + maxSizeOfFile;
-        res.render('failure');
+        res.render('failure', {
+            user: req.user
+        });
     }
-    
 });
 
 function oc(a) {
