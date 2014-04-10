@@ -77,16 +77,17 @@ app.get('/', function (req, res) {
     
         
     Video.find({}, function (err, videos) {
-        
-        console.log("\n## VIDEOS: " + videoArray);
-        
-        res.render('index', {
-            user: req.user,
-            videos: videoArray   
-        });
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("\n## VIDEOS: " + videoArray);
+            
+            res.render('index', {
+                user: req.user,
+                videos: videoArray   
+            });
+        }
     });
-});
-
 });
 
 app.get('/account', ensureAuthenticated, function (req, res) {
@@ -303,3 +304,7 @@ function ensureAuthenticated(req, res, next) {
     }
     res.redirect('/')
 }
+
+
+
+
