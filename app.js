@@ -77,11 +77,11 @@ app.get('/', function (req, res) {
     
     var videosArray = {};
         
-        Video.find({}, function (err, videos) {
+    Video.find({}, function (err, videos) {
          videos.forEach(function(video) {
               videoArray[video] = video;
-         }
-        });
+         });
+    });
     
     res.render('index', {
         user: req.user,
