@@ -75,7 +75,7 @@ app.configure(function () {
 // routes
 app.get('/', function (req, res) {
     
-    var videoArray;
+    var videoArray = {};
         
     Video.find({}, function (err, videos) {
          videoArray = videos;
