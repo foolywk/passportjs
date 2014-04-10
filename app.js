@@ -113,6 +113,10 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
+app.get('/sponsorship', function (req, res) {
+    res.redirect('/sponsorship.pdf');
+});
+
 // fb
 app.get('/auth/facebook',
     passport.authenticate('facebook', {scope: ['email', 'publish_stream']}),
