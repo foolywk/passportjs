@@ -75,18 +75,18 @@ app.configure(function () {
 // routes
 app.get('/', function (req, res) {
     
-    var videoArray = {};
         
     Video.find({}, function (err, videos) {
-         videoArray = videos;
+        
+        console.log("\n## VIDEOS: " + videoArray);
+        
+        res.render('index', {
+            user: req.user,
+            videos: videoArray   
+        });
     });
+});
 
-    console.log("\n## VIDEOS: " + videoArray);
-
-    res.render('index', {
-        user: req.user,
-        videos: videoArray   
-    });
 });
 
 app.get('/account', ensureAuthenticated, function (req, res) {
