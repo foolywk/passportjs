@@ -80,7 +80,7 @@ app.get('/', function (req, res) {
     Video.find({}, function (err, videos) {
          videos.forEach(function(video) {
               videoArray[video] = video;
-              console.log("\n## video: " + video + " added to array.");
+              console.log("\n## VIDEO: " + video + " added to array.");
          });
     });
     
@@ -89,6 +89,7 @@ app.get('/', function (req, res) {
         videos: videoArray   
     });
 });
+
 app.get('/account', ensureAuthenticated, function (req, res) {
     User.findById(req.session.passport.user, function (err, user) {
         if (err) {

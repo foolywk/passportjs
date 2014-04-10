@@ -157,7 +157,7 @@ html(lang='en')
 
       section#gallery-section  
       .grid-container.grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
-        .section-title(style="color:#000000") Pitch Gallery
+        .section-title(style="color:#000000") Gallery
         br        
         each video, i in videos
               .grid-33.mobile-grid-100.tablet-grid-100(style="padding: 15px 0px 30px 0px")
@@ -167,11 +167,9 @@ html(lang='en')
                 embed(style="height:250" width='350', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
                 br
                 body(style="color:#000000") Category:     
-                // 
                   body(style="color:#999")=video.category
                 br 
                 body(style="color:#000000") Description: 
-                //
                   body(style="color:#999")=video.description
 
     // 
