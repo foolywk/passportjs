@@ -76,7 +76,7 @@ app.configure(function () {
 app.get('/', function (req, res) {
     res.render('index', {
         user: req.user,
-        videos: Video.find();
+        videos: Video.find()
     });
 });
 app.get('/account', ensureAuthenticated, function (req, res) {
