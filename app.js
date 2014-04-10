@@ -75,13 +75,10 @@ app.configure(function () {
 // routes
 app.get('/', function (req, res) {
     
-    var videoArray = {};
+    var videoArray;
         
     Video.find({}, function (err, videos) {
-         videos.forEach(function(video) {
-              videoArray[video] = video;
-              console.log();
-         });
+         videoArray = videos;
     });
 
     console.log("\n## VIDEOS: " + videoArray);
