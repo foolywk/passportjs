@@ -75,8 +75,8 @@ app.configure(function () {
 // routes
 app.get('/', function (req, res) {
     res.render('index', {
-        user: req.user
-        videos: Video.prototype.collection;
+        user: req.user,
+        videos: Video.find();
     });
 });
 app.get('/account', ensureAuthenticated, function (req, res) {
