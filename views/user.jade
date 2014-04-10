@@ -10,7 +10,7 @@ if(user)
     .grid-container
       
       // hero holder 
-      .grid-container.grid-70.mobile-grid-100.tablet-grid-100(style='padding-top:100px')
+      .hero-holder.grid-70.mobile-grid-100.tablet-grid-100(style='padding-top:100px')
         .hero-inner
             h1.account-title=user.name
           .hero-title-holder
@@ -86,7 +86,7 @@ if(user)
       =======================================================================================            
 
   section#submissions-section  
-  .grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
+  .grid-container.grid.-85.prefix-5.mobile-grid-100.tablet-grid-100
     .section-title(style="color:#000000") My Pitches
     br        
     each video, i in user.videos
@@ -94,13 +94,13 @@ if(user)
             h2.section-subtitle.video-title=video.title
             embed(style="height:300px" width='400', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
             br
-            body(style="font-weight:bold") Category
+            body(style="font-weight:700") Category
             br
-            body(style="font-weight:regular")=video.category
+            body(style="font-weight:300")=video.category
             br 
-            body(style="font-weight:bold") Description 
+            body(style="font-weight:700") Description 
             br  
-            body(style="font-weight:regular")=video.description
+            body(style="font-weight:300")=video.description
 
     // 
       LOGOUT BUTTON
