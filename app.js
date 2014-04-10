@@ -80,7 +80,7 @@ app.get('/', function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log("\n## VIDEOS: " + videoArray);
+            console.log("\n## VIDEOS: " + videos);
             
             res.render('index', {
                 user: req.user,
