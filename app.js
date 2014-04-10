@@ -84,8 +84,8 @@ app.get('/', function (req, res) {
          });
     });
 
-    console.print("\n## VIDEOS: " + videoArray);
-    
+    console.log("\n## VIDEOS: " + videoArray);
+
     res.render('index', {
         user: req.user,
         videos: videoArray   
