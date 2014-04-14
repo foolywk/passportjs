@@ -113,9 +113,11 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
+/*
 app.get('/sponsorship', function (req, res) {
     res.redirect('/sponsorship.pdf');
 });
+*/
 
 // fb
 app.get('/auth/facebook',
@@ -198,11 +200,11 @@ app.post("/upload", function (req, res) {
     var file_extension = (i < 0) ? '' : filename.substr(i).toUpperCase();
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
-/*        
+/*        ath,
         fs.rename(tmp_path, target_path, function (err) {
             if (err) throw err;
             // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
-            fs.unlink(tmp_path, function () {
+            fs.unlink(tmp_p function () {
                 if (err) throw err;
             });
         });
@@ -264,10 +266,12 @@ app.post("/upload", function (req, res) {
                    user.save(function(err) {
                      if(err) {
                        console.log(err);
-                     } else {
-                       console.log("saving uploaded video to user...");
-                     };
-                 });
+                       return res.render('failure', {
+                        user: req.user; 
+                       });
+                    }
+                    console.log("Saving video to user...");
+                   });
                  };
                 });
             });
