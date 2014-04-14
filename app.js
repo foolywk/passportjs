@@ -195,7 +195,7 @@ app.post("/upload", function (req, res) {
     // set where the file should actually exists - in this case it is in the "images" directory
     var target_path = __dirname + '/upload/' + req.files.file.name;
 
-    var file_extension = (i < 0) ? '' : filename.substr(i);
+    var file_extension = (i < 0) ? '' : filename.substr(i).toUpperCase();
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
 /*        
