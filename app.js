@@ -267,7 +267,7 @@ app.post("/upload", function (req, res) {
                      if(err) {
                        console.log(err);
                        return res.render('failure', {
-                        user: req.user; 
+                        user: req.user
                        });
                     }
                     console.log("Saving video to user...");
