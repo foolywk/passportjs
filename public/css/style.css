@@ -381,21 +381,23 @@ img {
 	padding: 0px;
 }
 .section-title {
-	font-size:56px;
+	font-size:40px;
 	padding: 15px 0px 0px 0px;
 	margin-bottom:0px;
 	background-attachment: scroll;
 	font-family: 'Roboto Condensed';
 	text-transform: uppercase;
-	font-weight: 300;
-	letter-spacing: -2pt;
+	font-weight: 700;
+	letter-spacing: -1pt;
+	text-align: center;
 }
 .section-subtitle {
 	font-size: 16pt;
 	font-family: 'Roboto Condensed';
 	text-transform: uppercase;
-	font-weight: 300;
+	font-weight: 700;
 	color: #999999;
+	text-align: center;
 }
 .section-title span {
 	background:#FFFFFF;
@@ -1083,7 +1085,7 @@ img {
 	background-attachment: fixed !important;
 }
 .parallax-banner-1 { background:url('../images/losangeles.jpg'); background-position: center center; }
-.parallax-banner-2 { background:url('../images/losangeles.jpg'); background-position: center center;}
+.parallax-banner-2 { background:url('../images/nightpowell.jpg'); background-position: center center;}
 .parallax-banner-3 { background:url('../images/nightpowell.jpg'); }
 .parallax-banner-4 { background:url('../images/parallax-banner-4.jpg'); background-position:center bottom !important; }
 .parallax-banner-5 { background:url('../images/parallax-banner-5.jpg'); }
@@ -1216,33 +1218,23 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
-  	border: none;
-	display: inline-block;
-	text-align:center;
-	text-decoration: none;
-	cursor: pointer;
-	margin-bottom: 20px;
-	line-height: normal;
-	color: #FFFFFF;
+	background:transparent;
+	color:#FFFFFF;
+	border: 5px solid rgba(255, 255, 255, 0.65);
 	padding:10px 15px;
-	font-size:12px;
+	font-family: "Roboto Condensed";
+	font-size:13px;
 	cursor:pointer;
 	text-transform:uppercase;
 	letter-spacing:2px;
 	text-align:center;
+	display:inline-block;
+	text-rendering: optimizelegibility;
 	-webkit-transition:0.2s background linear;
 		-moz-transition:0.2s background linear;
 			transition:0.2s background linear;
-	-webkit-border-radius: 3px;
-	  -moz-border-radius: 3px;
-		  border-radius: 3px;
-	-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-			box-sizing: border-box;
-	-webkit-background-clip: padding;
-		-moz-background-clip: padding;
-			background-clip: padding-box;
-	-webkit-appearance: none;
+	width: 50%;
+	margin: 0 auto;		
 }
 button:hover,
 input[type="submit"]:hover,
@@ -1299,7 +1291,7 @@ textarea {
 		-moz-background-clip: padding;
 			background-clip: padding-box;
 	background:rgb(0, 0, 0);
-	background:rgba(0, 0, 0, 0.50);
+	background:rgba(0, 0, 0, 0.65);
 	-webkit-border-radius:0;
 		-moz-border-radius:0;
 			border-radius: 0;

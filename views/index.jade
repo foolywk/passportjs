@@ -59,7 +59,7 @@ html(lang='en')
               a(href='#about-section') About
               a(href='#gallery-section') Gallery
               a(href='#cta-section') Contact
-              include loginButton
+              // include loginButton
 
         // close .ha-header-perspective 
       // close grid container 
@@ -74,17 +74,26 @@ html(lang='en')
         // hero holder 
         .hero-holder.grid-70.mobile-grid-100.tablet-grid-100
           .hero-inner
-            span.hero-description 500 Pitches - 15 Finalists - $3,000+ prizes
+            span.hero-description 300 Pitches - 15 Finalists - $3,000+ prizes
             img.hero-logo(src='images/logoWhite.png')
-            span.hero-description May 2014 - Ucla
+            span.hero-description May 22, 2014
             br
             .grid-100.mobile-grid-100.tablet-grid-100
               iframe(src='//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2FperfectpitchLA&width&layout=button_count&action=like&show_faces=true&share=true&height=21&appId=616700801754177', scrolling='no', frameborder='0', style='border: none; overflow: hidden; width: 125px; height: 21px; float:center;', allowtransparency='true')
               iframe(allowtransparency='true', frameborder='0', scrolling='no', src='//platform.twitter.com/widgets/follow_button.html?screen_name=perfectpitchLA', style='width: 225px; height: 20px; float:center;')
-            br
-            span.btn-holder
-              include submitButton
+              
+              // nodemailer form   
+              form(action='/signup', method='post', name='email registration', target='_blank', style='margin-top:40px')
+                input.email(type='email', value='', name='EMAIL', placeholder='Enter Email Address...', required='required' style="margin: 0 auto; width:50%; border-color: rgba(255,255,255,0.75); border-width:3px")
+                //
+                   real people should not fill this in and expect good things - do not remove this or risk form bot signups
+                div(style='position: absolute; left: -5000px;')
+                  input(type='text', name='b_95fffc4eb179e8cedecfbc026_469fdeb0f2', value='')
+                .clear
+                br
+                input.hero-btn.button(type='submit', value='Register', name='subscribe' style='width:200px')
 
+        // footer
         .hero-footer.grid-100.mobile-grid-100.tablet-grid-100           
             p 
               span(style="vertical-align: -50%; color: #AAAAAA") presented by
@@ -104,13 +113,13 @@ html(lang='en')
         .grid-container
 
           // ABOUT header 
-          .grid-90.prefix-5.mobile-grid-100.tablet-grid-100
+          .grid-100.mobile-grid-100.tablet-grid-100
             header.section-header
               h2.section-title About
               h2.section-subtitle The biggest pitch competition at UCLA
             
             // ABOUT description 
-            .about-box(style='color: #000000;')
+            .about-box.grid-80.prefix-10.tablet-grid-100.mobile-grid-100(style='color: #000000;')
               h3
               p
                 span(style='font-weight: bold;') Perfect Pitch 
@@ -128,53 +137,51 @@ html(lang='en')
                 span(style='font-weight: bold;') Submission Deadline: 
                 | May 22, 2014. 
               br
-
-            header.section-header(style='padding: 0px;')
+            //    
+              header.section-header(style='padding: 0px;')
               h2.section-title 
               h2.section-subtitle Rules for video submission
             
             // RULES description 
-            .about-box(style='color: #000000;')
-              h3
-              p 
-                ol
-                  li Pitch must be no more than 60 seconds Must not use inappropriate language (including but not limited to racist, sexist, sexual, violent, discriminatory and/or cursing language).
-                  li Must not have received prior funding for idea.
-                  li Every speaker is allowed to submit a maximum of 3 submissions.
-                  li Candidates may collaborate in teams; however, only one person can present and only the presenter’s or company's name alone will be recognized.
-                  li No props or visual aids of any kind are allowed during presentation.
-                  li If the idea crosses over multiple categories, candidates are allowed to submit the same pitch to a maximum of two category; note that each pitch may only be selected once for the final round.
-                  li Presenter must be a UCLA student available to attend both the pitch workshop and the finale event.
-              br 
+              .about-box(style='color: #000000;')
+                h3
+                p 
+                  ol
+                    li Pitch must be no more than 60 seconds Must not use inappropriate language (including but not limited to racist, sexist, sexual, violent, discriminatory and/or cursing language).
+                    li Must not have received prior funding for idea.
+                    li Every speaker is allowed to submit a maximum of 3 submissions.
+                    li Candidates may collaborate in teams; however, only one person can present and only the presenter’s or company's name alone will be recognized.
+                    li No props or visual aids of any kind are allowed during presentation.
+                    li If the idea crosses over multiple categories, candidates are allowed to submit the same pitch to a maximum of two category; note that each pitch may only be selected once for the final round.
+                    li Presenter must be a UCLA student available to attend both the pitch workshop and the finale event.
+                br 
             .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px')
               span.hero-btn(style='color: rgb(207, 156, 91); display: block; margin: 0px auto; border-color: rgb(207, 156, 91); border-width: 3px;')
                 a(href='/sponsorship.pdf') Become a Sponsor            
-
-
       // 
         GALLERY
         =======================================================================================            
 
-      section#gallery-section  
-        .grid-container    
-          
-          // GALLERY header
-          .grid.-90.prefix-5.mobile-grid-100.tablet-grid-100
-            header.section-header
-            h2.section-title(style="color:#000000") Gallery
-            br        
-            each video, i in videos
-              .grid-33.mobile-grid-100.tablet-grid-100(style="padding: 15px 0px 30px 0px")
-                h2.section-subtitle.video-title=video.title
-                // body=video.owner
-                embed(style="height:250" width='350', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
-                br
-                body(style="color:#000000") Category:     
-                  body(style="color:#999")=video.category
-                br 
-                body(style="color:#000000") Description: 
-                  body(style="color:#999")=video.description
-
+        section#gallery-section  
+          .grid-container    
+            
+            // GALLERY header
+            .grid.-90.prefix-5.mobile-grid-100.tablet-grid-100
+              header.section-header
+              h2.section-title(style="color:#000000") Gallery
+              br        
+              each video, i in videos
+                .grid-33.mobile-grid-100.tablet-grid-100(style="padding: 15px 0px 30px 0px")
+                  h2.section-subtitle.video-title=video.title
+                  // body=video.owner
+                  embed(style="height:250" width='350', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
+                  br
+                  body(style="color:#000000") Category:     
+                    body(style="color:#999")=video.category
+                  br 
+                  body(style="color:#000000") Description: 
+                    body(style="color:#999")=video.description
+    
     // 
       CONTACT SECTION
       =======================================================================================

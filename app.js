@@ -27,7 +27,7 @@ var googleapis = require('googleapis');
 var request = require('request');
 var clientSecrets = require('./client_secrets.json');
 var OAuth2 = googleapis.auth.OAuth2;
-// var youtube = require('youtube-video');
+var nodemailer = require("nodemailer");
 var oauth2Client = new OAuth2(
     clientSecrets.web.client_id,
     clientSecrets.web.client_secret,
@@ -37,6 +37,13 @@ var oauth2Client = new OAuth2(
 var argv = require('optimist').argv;
 var access_token;
 var refresh_token;
+var transport = nodemailer.createTransport("SMTP", {
+    service : "Gmail",
+    auth: {
+        user: "brandon@perfectpitch.io",
+        pass: clientSecrets.web.gmailPass
+    }
+});
 
 // set access and refresh token from database (stored in admin's account)
 User.findOne({ oauthID: '706352243' }, function(err, user) {
@@ -113,11 +120,29 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
-/*
-app.get('/sponsorship', function (req, res) {
-    res.redirect('/sponsorship.pdf');
+
+app.get('/signup', function (req, res) {
+    res.render('success');
 });
-*/
+
+// Email Registration
+app.post('/signup', function (req, res) {
+    var mailOptions = {
+        from: "takkun00@gmail.com",
+        to: "brandon@perfectpitch.io", // list of receivers
+        subject: "NEW REGISTRANT " + req.body.EMAIL, // Subject line
+        text: req.body.EMAIL + " has registered for Perfect Pitch! Make sure to invite them on Vimeo.", // plaintext body
+    }
+    transport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+        }else{
+            console.log("Message sent: " + response.message);
+        }
+        transport.close(); // shut down the connection pool, no more messages
+    });
+   res.render('success');
+});
 
 // fb
 app.get('/auth/facebook',
@@ -178,6 +203,9 @@ app.get('/auth/google/callback', function (req, res) {
     res.redirect('/');
 });
 
+
+
+/*
 app.post("/upload", function (req, res) {
 
     //get the file name
@@ -200,15 +228,7 @@ app.post("/upload", function (req, res) {
     var file_extension = (i < 0) ? '' : filename.substr(i).toUpperCase();
 
     if ((file_extension in oc(extensionAllowed)) && ((req.files.file.size / 1024) < maxSizeOfFile)) {
-/*        ath,
-        fs.rename(tmp_path, target_path, function (err) {
-            if (err) throw err;
-            // delete the temporary file, so that the explicitly set temporary upload dir does not get filled with unwanted files
-            fs.unlink(tmp_p function () {
-                if (err) throw err;
-            });
-        });
-*/
+
         // handle upload to youtube
         googleapis.discover('youtube', 'v3').execute(function (err, client) {
         var metadata = {
@@ -291,7 +311,7 @@ app.post("/upload", function (req, res) {
         });
     }
 });
-
+*/
 function oc(a) {
     var o = {};
     for (var i = 0; i < a.length; i++) {
