@@ -128,10 +128,11 @@ app.get('/signup', function (req, res) {
 // Email Registration
 app.post('/signup', function (req, res) {
     var mailOptions = {
-        from: "takkun00@gmail.com",
-        to: "brandon@perfectpitch.io", // list of receivers
-        subject: "NEW REGISTRANT " + req.body.EMAIL, // Subject line
-        text: req.body.EMAIL + " has registered for Perfect Pitch! Make sure to invite them on Vimeo.", // plaintext body
+        from: "takkun00@gmail.com", 
+        to: "brandon@perfectpitch.io, " + req.body.EMAIL, // list of receivers
+        subject: "Submission Instructions for Perfect Pitch 2014!", // Subject line
+        generateTextFromHTML: true,
+        html: "<h1>Welcome! | Perfect Pitch 2014</h1><p>Thanks for registering for Perfect Pitch, UCLA's biggest Pitch Comptetition! Below are instructions on how to submit your 1-2 online video pitch through Vimeo:</p><ol><li>If you don't have one already, <a href='https://vimeo.com/log_in'>sign up for a Vimeo account</a> (or login with Facebook)</li><li>Join the Perfect Pitch 2014 Vimeo group by going to <a href='http://vimeo.com/groups/PerfectPitch'>www.vimeo.com/groups/perfectpitch</a> and clicking 'Join Group'.<br><img src='/images/joinvimeogroup.png'></img></li>"
     }
     transport.sendMail(mailOptions, function(error, response){
         if(error){
