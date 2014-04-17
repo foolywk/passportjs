@@ -57,8 +57,8 @@ html(lang='en')
 
               a.selected(href='#top') Home
               a(href='#about-section') About
+              a(href='#summit-section') Summit
               a(href='#partners-section') Partners
-              // a(href='#gallery-section') Gallery
               a(href='#cta-section') Contact
               // include loginButton
 
@@ -137,19 +137,42 @@ html(lang='en')
           // Register button
           .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px; width: 40%')
             a.toTop(href='#top' style="color:#fff")
-              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Register to Pitch 
+              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Register to Pitch                   
 
-          // Sponsorship Deck
-          .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px; width: 40%')
-            a(href='/sponsorship.pdf' style="color:#fff")
-              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Become a Sponsor                   
+
+
+      // 
+        SUMMIT SECTION
+        =======================================================================================
+      section#summit-section.parallax-section.parallax-banner-3.parallax-background.parallax-section-3.ha-waypoint
+        .parallax-overlay.parallax-overlay-3
+        .grid-container.parallax-content(style="height:350px")
+          //
+             parallax header 
+          .grid-70.prefix-15.mobile-grid-100.tablet-grid-100
+            header.parallax-header
+              .section-title Perfect Pitch Summit
+              br
+              .section-subtitle(style="color:#fff") 2:30-6:30pm | May 22, 2014 
+              br
+              .section-subtitle(style="color:#fff") Neuroscience Research Building, UCLA 
+              br
+              a(href="https://www.google.com/maps/preview?q=neuroscience+research+building&oe=utf-8&client=firefox-a&channel=fflb&ie=UTF-8&ei=_GpPU76xEcmayASC8IKADA&ved=0CAgQ_AUoAQ" target="_new")
+                img(src='/images/map-marker.png' style='height:60px; padding-top:35px;')
+
+
        
       // 
         PARTNERS SECTION
         =======================================================================================            
 
       section#partners-section  
-        .grid-container    
+        .grid-container   `
+
+          // Sponsorship Deck
+          .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-top: 30px; width: 40%')
+            a(href='/sponsorship.pdf' style="color:#fff")
+              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Become a Sponsor  
           
           // Partners header
           .grid.-100.mobile-grid-100.tablet-grid-100
@@ -202,9 +225,9 @@ html(lang='en')
           span.cta-btn.cl-effect-18
             a.cl-effect-18(href='mailto:contact@perfectpitch.io' style='font-family:"roboto condensed') Contact Us
           br
-          a(href='http://facebook.com/perfectpitchLA') Facebook
+          a(href='http://facebook.com/perfectpitchLA' target='_new') Facebook
           span(href="font-size:40pt; color:#CF9C5B")   ∙  
-          a(href='http://twitter.com/perfectpitchLA') Twitter
+          a(href='http://twitter.com/perfectpitchLA' target='_new') Twitter
 
     
     // Load Javascript
