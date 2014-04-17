@@ -8,7 +8,7 @@ html(lang='en')
 
     // Basic Page Needs
     meta(charset='utf-8')
-    title Perfect Pitch
+    title Perfect Pitch 2014
     meta(name='description', content='Perfect Pitch')
     meta(name='author', content='Brandon Foo')
     
@@ -122,20 +122,15 @@ html(lang='en')
             .about-box.grid-80.prefix-10.tablet-grid-100.mobile-grid-100(style='color: #000000;')
               h3
               p
-                span(style='font-weight: bold;') Perfect Pitch 
-                | is a pitch competition to foster entrepreneurial talent, facilitate creative problem solving, and promote the sharing of ideas at UCLA. 
+                | Perfect Pitch is a pitch competition to foster entrepreneurial talent, facilitate creative problem solving, and promote the sharing of ideas at UCLA. 
                 br
                 br
-                | From now until 
-                span(style='font-weight: bold;') May 18, 2014
-                | , any UCLA undergraduate student can submit their idea for a business, product, or service in the form of a 1-2 minute video pitch. 
-                | We then will be selecting the top 5 pitchers in each of the following categories - 
-                span(style='font-weight:bold;') Technology, Non-technology, and Social Entrepreneurship
-                |  - and invite them to present their pitch before a panel of expert judges at our 
-                span(style='font-weight:bold;') Grand Finals on May 22, 2014 at UCLA's NRB. 
+                | From now until May 18, 2014, any UCLA undergraduate student can submit their idea for a business, product, or service in the form of a 1-2 minute video pitch. 
+                | We then will be selecting the top 5 pitchers in each of the following categories - Technology, Non-Technology, and Social Entrepreneurship
+                |  - and invite them to present their pitch before a panel of expert judges at our Grand Finals which will be held May 22, 2014 in UCLA's NRB. 
                 br
                 br
-                | A cash prize of $1,000 will be awarded to the top finalist in each category. 
+                | A cash prize of $1,000 will be awarded to the first place in each category. 
               br
             //    
               header.section-header(style='padding: 0px;')
@@ -155,32 +150,44 @@ html(lang='en')
                     li If the idea crosses over multiple categories, candidates are allowed to submit the same pitch to a maximum of two category; note that each pitch may only be selected once for the final round.
                     li Presenter must be a UCLA student available to attend both the pitch workshop and the finale event.
                 br 
-            .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px')
-              span.hero-btn(style='color: rgb(207, 156, 91); display: block; margin: 0px auto; border-color: rgb(207, 156, 91); border-width: 3px;')
-                a(href='/sponsorship.pdf') Become a Sponsor            
+       
       // 
-        GALLERY
+        SPONSORS SECTION
         =======================================================================================            
 
-        section#gallery-section  
-          .grid-container    
+      section#gallery-section  
+        .grid-container    
+          
+          // GALLERY header
+          .grid.-100.mobile-grid-100.tablet-grid-100
+            header.section-header
+            h2.section-title(style="color:#000000") SPONSORS
+            br
             
-            // GALLERY header
-            .grid.-90.prefix-5.mobile-grid-100.tablet-grid-100
-              header.section-header
-              h2.section-title(style="color:#000000") Gallery
-              br        
-              each video, i in videos
-                .grid-33.mobile-grid-100.tablet-grid-100(style="padding: 15px 0px 30px 0px")
-                  h2.section-subtitle.video-title=video.title
-                  // body=video.owner
-                  embed(style="height:250" width='350', src='http://www.youtube.com/v/' + video.id + '?controls=0', type='application/x-shockwave-flash' , frameborder='0',)                     
-                  br
-                  body(style="color:#000000") Category:     
-                    body(style="color:#999")=video.category
-                  br 
-                  body(style="color:#000000") Description: 
-                    body(style="color:#999")=video.description
+            // STARTUP UCLA  
+            a(href='http://startupucla.com')
+              .member-box.grid-25.mobile-grid-50.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/startupucla.png\');')
+
+            // UCLA BSC  
+            a(href='http://www.bs.pharmacology.ucla.edu/')
+              .member-box.grid-25.mobile-grid-50.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/uclabsc.gif\');')
+
+            // UCLA OIP  
+            a(href='http://oip.ucla.edu')
+              .member-box.grid-25.mobile-grid-50.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/uclaoip.png\');')
+
+            // BRUINCUBATE 
+            a(href='http://bruincubate.com')
+              .member-box.grid-25.mobile-grid-50.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/bruincubate.png\');')
+          
+          // Sponsorship Deck
+          .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px; width: 40%')
+            button.sponsor-btn(style="color: #fff !important; border-width: 0px")
+              a(href='/sponsorship.pdf' style="color:#fff") Become a Sponsor                       
     
     // 
       CONTACT SECTION
