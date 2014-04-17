@@ -57,7 +57,8 @@ html(lang='en')
 
               a.selected(href='#top') Home
               a(href='#about-section') About
-              a(href='#gallery-section') Gallery
+              a(href='#partners-section') Partners
+              // a(href='#gallery-section') Gallery
               a(href='#cta-section') Contact
               // include loginButton
 
@@ -127,67 +128,68 @@ html(lang='en')
                 br
                 | From now until May 18, 2014, any UCLA undergraduate student can submit their idea for a business, product, or service in the form of a 1-2 minute video pitch. 
                 | We then will be selecting the top 5 pitchers in each of the following categories - Technology, Non-Technology, and Social Entrepreneurship
-                |  - and invite them to present their pitch before a panel of expert judges at our Grand Finals which will be held May 22, 2014 in UCLA's NRB. 
+                |  - and invite them to present their pitch before a panel of expert judges at the Perfect Pitch Summit to win $3,000 in cash prizes!
                 br
                 br
-                | A cash prize of $1,000 will be awarded to the first place in each category. 
+                | Register now for instructions on how to submit a pitch!
               br
-            //    
-              header.section-header(style='padding: 0px;')
-              h2.section-title 
-              h2.section-subtitle Rules for video submission
-            
-            // RULES description 
-              .about-box(style='color: #000000;')
-                h3
-                p 
-                  ol
-                    li Pitch must be no more than 60 seconds Must not use inappropriate language (including but not limited to racist, sexist, sexual, violent, discriminatory and/or cursing language).
-                    li Must not have received prior funding for idea.
-                    li Every speaker is allowed to submit a maximum of 3 submissions.
-                    li Candidates may collaborate in teams; however, only one person can present and only the presenter’s or company's name alone will be recognized.
-                    li No props or visual aids of any kind are allowed during presentation.
-                    li If the idea crosses over multiple categories, candidates are allowed to submit the same pitch to a maximum of two category; note that each pitch may only be selected once for the final round.
-                    li Presenter must be a UCLA student available to attend both the pitch workshop and the finale event.
-                br 
-       
-      // 
-        SPONSORS SECTION
-        =======================================================================================            
 
-      section#gallery-section  
-        .grid-container    
-          
-          // GALLERY header
-          .grid.-100.mobile-grid-100.tablet-grid-100
-            header.section-header
-            h2.section-title(style="color:#000000") SPONSORS
-            br
-            
-            // STARTUP UCLA  
-            a(href='http://startupucla.com')
-              .member-box.grid-25.mobile-grid-50.tablet-grid-50
-                figure.member-photo(style='background-image: url(\'/images/startupucla.png\');')
+          // Register button
+          .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px; width: 40%')
+            a.toTop(href='#top' style="color:#fff")
+              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Register to Pitch 
 
-            // UCLA BSC  
-            a(href='http://www.bs.pharmacology.ucla.edu/')
-              .member-box.grid-25.mobile-grid-50.tablet-grid-50
-                figure.member-photo(style='background-image: url(\'/images/uclabsc.gif\');')
-
-            // UCLA OIP  
-            a(href='http://oip.ucla.edu')
-              .member-box.grid-25.mobile-grid-50.tablet-grid-50
-                figure.member-photo(style='background-image: url(\'/images/uclaoip.png\');')
-
-            // BRUINCUBATE 
-            a(href='http://bruincubate.com')
-              .member-box.grid-25.mobile-grid-50.tablet-grid-50
-                figure.member-photo(style='background-image: url(\'/images/bruincubate.png\');')
-          
           // Sponsorship Deck
           .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-bottom: 20px; width: 40%')
             a(href='/sponsorship.pdf' style="color:#fff")
-              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Become a Sponsor                       
+              button.sponsor-btn(style="color: #fff !important; border-width: 0px") Become a Sponsor                   
+       
+      // 
+        PARTNERS SECTION
+        =======================================================================================            
+
+      section#partners-section  
+        .grid-container    
+          
+          // Partners header
+          .grid.-100.mobile-grid-100.tablet-grid-100
+            header.section-header
+            h2.section-title(style="color:#000000") PARTNERS
+            br
+
+            // SIGMA ETA PI
+            a(href='http://ucla.sigmaetapi.com')
+              .member-box.grid-50.mobile-grid-50.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'http://s3-us-west-1.amazonaws.com/lahacks/sep.png\'); background-position:right;')            
+            
+            // TEC
+            a(href='http://tecbruins.org')
+              .member-box.grid-50.mobile-grid-50.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/tec.jpg\'); background-position:left;')                            
+
+             
+
+            // STARTUP UCLA  
+            a(href='http://startupucla.com')
+              .member-box.grid-25.mobile-grid-33.tablet-grid-33
+                figure.member-photo(style='background-image: url(\'/images/startupucla.png\'); height:60px')
+
+            // UCLA BSC  
+            a(href='http://www.bs.pharmacology.ucla.edu/')
+              .member-box.grid-25.mobile-grid-33.tablet-grid-33
+                figure.member-photo(style='background-image: url(\'/images/uclabsc.gif\'); height:60px')
+
+            // UCLA OIP  
+            a(href='http://oip.ucla.edu')
+              .member-box.grid-25.mobile-grid-33.tablet-grid-33
+                figure.member-photo(style='background-image: url(\'/images/uclaoip.png\'); height:60px')
+
+            // BRUINCUBATE 
+            a(href='http://bruincubate.com')
+              .member-box.grid-25.mobile-grid-33.tablet-grid-33
+                figure.member-photo(style='background-image: url(\'/images/bruincubate.png\'); height:60px')
+          
+                    
     
     // 
       CONTACT SECTION
@@ -198,7 +200,11 @@ html(lang='en')
         .grid-70.prefix-15.mobile-grid-100.tablet-grid-100
           header.section-header
           span.cta-btn.cl-effect-18
-            a.cl-effect-18(href='mailto:contact@perfectpitch.io') Contact Us
+            a.cl-effect-18(href='mailto:contact@perfectpitch.io' style='font-family:"roboto condensed') Contact Us
+          br
+          a(href='http://facebook.com/perfectpitchLA') Facebook
+          span(href="font-size:40pt; color:#CF9C5B")   ∙  
+          a(href='http://twitter.com/perfectpitchLA') Twitter
 
     
     // Load Javascript
