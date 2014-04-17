@@ -9,12 +9,16 @@ html(lang='en')
     // Basic Page Needs
     meta(charset='utf-8')
     title Perfect Pitch 2014
-    meta(name='description', content='Perfect Pitch')
+    meta(name='description', content='300 pitches. 15 finalists. $3,000+ prizes.')
     meta(name='author', content='Brandon Foo')
     
     // Mobile Specific Metas
     meta(name='viewport', content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1')
     
+    // FB Meta Tags
+    <meta property="og:image" content="images/logoWhite.png"/>
+    <meta property="og:title" content="Perfect Pitch 2014"/>    
+
     // CSS
     link(rel='stylesheet', href='css/reset.css', media='all')
     link(rel='stylesheet', href='css/ut-fontface.css', media='all')
@@ -55,7 +59,7 @@ html(lang='en')
 
             nav#ut-navigation.grid-80.tablet-grid-80.hide-on-mobile
 
-              a.selected(href='#top') Home
+              a(href='#top') Home
               a(href='#about-section') About
               a(href='#summit-section') Summit
               a(href='#partners-section') Partners
