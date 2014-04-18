@@ -125,14 +125,18 @@ app.get('/signup', function (req, res) {
     res.render('success');
 });
 
+app.get('/faq' , function (req, res) {
+    res.render('faq');
+});
+
 // Email Registration
 app.post('/signup', function (req, res) {
     var mailOptions = {
-        from: "takkun00@gmail.com", 
-        to: "brandon@perfectpitch.io, " + req.body.EMAIL, // list of receivers
+        // from: "takkun00@gmail.com", 
+        to: "contact@perfectpitch.io, " + req.body.EMAIL, // list of receivers
         subject: "Submission Instructions for Perfect Pitch 2014!", // Subject line
         generateTextFromHTML: true,
-        html: "<h1>Welcome! | Perfect Pitch 2014</h1><p>Thanks for registering for Perfect Pitch, UCLA's biggest Pitch Comptetition! Below are instructions on how to submit your 1-2 online video pitch through Vimeo:</p><ol><li>If you don't have one already, <a href='https://vimeo.com/log_in'>sign up for a Vimeo account</a> (or login with Facebook)</li><li>Join the Perfect Pitch 2014 Vimeo group by going to <a href='http://vimeo.com/groups/PerfectPitch'>www.vimeo.com/groups/perfectpitch</a> and clicking 'Join this group'.<br><img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/joinvimeogroup.png'; style='width:500px'></img></li> <li>Upload your video by cliking the 'Upload' link above and choosing the video file for your pitch. You should enter your name and a brief description of your pitch with your upload. <br> <img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/uploadvimeo.png'; style='width:500px'></img></li> <li>Click on 'Add To' and select the Perfect Pitch 2014 group. <br> <img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/addtogroup.png'; style='width:500px'></img> <br> <img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/selectgroup.png'; style='width:500px'></img> </li>"
+        html: "<h1>Welcome! | Perfect Pitch 2014</h1><h3> Thanks for registering for Perfect Pitch, UCLA's biggest Pitch Comptetition! Below are instructions on how to submit your 1-2 online video pitch through Vimeo: <ol><li>If you don't have one already, <a href='https://vimeo.com/log_in'>sign up for a Vimeo account</a> (or login with Facebook).</li><br><li>Join the Perfect Pitch 2014 Vimeo group by going to <a href='http://vimeo.com/groups/PerfectPitch'>www.vimeo.com/groups/perfectpitch</a> and clicking 'Join this group'.<br><br><img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/joinvimeogroup.png'; style='width:500px'></img></li> <br><br> <li>Upload your video by cliking the 'Upload' link above and choosing the video file for your pitch. You should enter your name and a brief description of your pitch with your upload. <br><br> <img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/uploadvimeo.png'; style='width:500px'></img></li> <br> <li>Click on 'Add To' and select the Perfect Pitch 2014 group. <br><br> <img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/addtogroup.png'; style='width:500px'></img> <br><br> <img src='https://raw.githubusercontent.com/foolywk/perfect-pitch/master/public/images/selectgroup.png'; style='width:500px'></img> </li></ol></h3> <h3>Thats it! Once you've uploaded your video pitch and added it to the Perfect Pitch group, we'll review it and let you know once we've made our selections for finalists! Please feel free to email us at <a href='mailto:contact@perfectpitch.io'>contact@perfectpitch.io</a> with any questions about the contest or submission process. <br><br> Thanks for participating, and good luck!.</h3> <p><b>Perfect Pitch 2014</b> presented by <a href=http://bruinentrepreneurs.org'>Bruin Entrepreneurs</a> <br> <a href='http://facebook.com/perfectpitchla'>Facebook</a> | <a href='http://twitter.com/perfectpitchla'>Twitter</a> </p> "
     }
     transport.sendMail(mailOptions, function(error, response){
         if(error){
