@@ -735,6 +735,7 @@ img {
 ================================================== */
 
 .cta-section {
+
 	position:relative;
 	text-align:center;
 	padding:50px 0;
@@ -1269,8 +1270,7 @@ input[type="button"] {
 	-webkit-transition:0.2s background linear;
 		-moz-transition:0.2s background linear;
 			transition:0.2s background linear;
-	width: 50%;
-	min-width: 200px;
+	width: 250px;
 	margin: 0 auto;		
 }
 button:hover,
