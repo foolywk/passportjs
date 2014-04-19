@@ -752,6 +752,7 @@ img {
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	font-family: "roboto condensed";
 	font-size: 1.4em;
 }
 .cta-btn a:hover,
@@ -1269,6 +1270,7 @@ input[type="button"] {
 		-moz-transition:0.2s background linear;
 			transition:0.2s background linear;
 	width: 50%;
+	min-width: 200px;
 	margin: 0 auto;		
 }
 button:hover,
