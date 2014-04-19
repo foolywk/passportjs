@@ -39,6 +39,22 @@
 	font-weight: 700;
 }
 
+.faq-footer {
+	position: relative;	
+	left: 0;
+	bottom: 0;
+	background-color: #ffffff;
+	height: 80px;
+	text-align: center;
+	font-family : "Helvetica Neue";
+	font-size: 12px; 
+	font-weight: bolder;
+	color: #000000;
+	border-bottom-width: 2px;
+	border-bottom-color: #dddddd;
+	border-bottom-style: solid;
+}
+
 /* #General
 ================================================== */
 	
