@@ -33,7 +33,9 @@ var oauth2Client = new OAuth2(
     clientSecrets.web.client_secret,
     // "http://127.0.0.1:1337/auth/google/callback"
     "http://perfect-pitch.herokuapp.com/auth/google/callback");
-    
+var mcapi = require('mailchimp-api');
+var mc = new mcapi.Mailchimp(clientSecrets.web.mcapiKey);
+var list_id = clientSecrets.web.mcListId;
 var argv = require('optimist').argv;
 var access_token;
 var refresh_token;
@@ -131,6 +133,22 @@ app.get('/faq' , function (req, res) {
 
 // Email Registration
 app.post('/signup', function (req, res) {
+
+    // mailchimp subscribe
+      if (req.body && req.body.EMAIL) {
+      mc.lists.subscribe({id: list_id, email:{email:req.body.EMAIL}}, function(data) {
+          // res.contentType('json');
+          // res.send({response:'success'});
+        },
+        function(error) {
+          // res.contentType('json');
+          // res.send({response:error.error});
+      });
+  } else {
+    res.send({response:'could not find email'});
+  }
+
+    // nodemailer
     var mailOptions = {
         // from: "takkun00@gmail.com", 
         to: "contact@perfectpitch.io, " + req.body.EMAIL, // list of receivers
