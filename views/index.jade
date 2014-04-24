@@ -194,7 +194,23 @@ html(lang='en')
         =======================================================================================            
 
       section#partners-section  
-        .grid-container   `
+        .grid-container   
+
+          // Partners header
+          .grid.-100.mobile-grid-100.tablet-grid-100
+            header.section-header
+            h2.section-title(style="color:#000000") SPONSORS
+            br
+
+            // STARTENGINE
+            a(href='http://startengine.com')
+              .member-box.grid-25.prefix-25.mobile-grid-25.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/startengine.png\'); background-position:center')                 
+
+            // ENPLUG
+            a(href='http://enplug.com')
+              .member-box.grid-25.mobile-grid-25.tablet-grid-50
+                figure.member-photo(style='background-image: url(\'/images/enplug.png\'); background-position:center')                                 
 
           // Sponsorship Deck
           .grid-container.grid-100.mobile-grid-100.tablet-grid-100(style='padding-top: 30px')
