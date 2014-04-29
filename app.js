@@ -147,7 +147,7 @@ app.post('/signup', function (req, res) {
   } else {
     res.send({response:'could not find email'});
   }
-
+add .
     // nodemailer
     var mailOptions = {
         // from: "takkun00@gmail.com", 
