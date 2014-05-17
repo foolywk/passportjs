@@ -93,7 +93,7 @@ html(lang='en')
             .grid-100.mobile-grid-100.tablet-grid-100
               iframe(src='//www.facebook.com/plugins/like.php?href=http%3A%2F%2Ffacebook.com%2FperfectpitchLA&width&layout=button_count&action=like&show_faces=true&share=true&height=21&appId=616700801754177', scrolling='no', frameborder='0', style='border: none; overflow: hidden; width: 125px; height: 21px; float:center;', allowtransparency='true')
               iframe(allowtransparency='true', frameborder='0', scrolling='no', src='//platform.twitter.com/widgets/follow_button.html?screen_name=perfectpitchLA', style='width: 225px; height: 20px; float:center;')
-              
+
               // nodemailer form   
               form(action='/signup', method='post', name='email registration', target='_blank', style='margin-top:20px')
                 input.email(type='email', value='', name='EMAIL', placeholder='Enter Email Address...', required='required' style="margin: 0 auto; width:50%; border-color: rgba(255,255,255,0.75); border-width:3px")
@@ -104,6 +104,10 @@ html(lang='en')
                 .clear
                 br
                 input.hero-btn.button(type='submit', value='Register', name='subscribe' style='width:200px')
+              br
+              // RSVP button
+              a(href="http://perfectpitchla.eventbrite.com" target="_new")
+                button.hero-btn(style="width:225px") RSVP ON EVENTBRITE                    
 
         // footer
         .hero-footer.grid-100.mobile-grid-100.tablet-grid-100           
@@ -193,6 +197,12 @@ html(lang='en')
               br
               a(href="https://www.google.com/maps/preview?q=neuroscience+research+building&oe=utf-8&client=firefox-a&channel=fflb&ie=UTF-8&ei=_GpPU76xEcmayASC8IKADA&ved=0CAgQ_AUoAQ" target="_new")
                 img(src='/images/map-marker.png' style='height:60px; padding-top:25px;')
+              br
+              br
+              br
+              // RSVP button
+              a(href="http://perfectpitchla.eventbrite.com" target="_new")
+                button.hero-btn(style="width:225px") RSVP ON EVENTBRITE                       
 
 
        
