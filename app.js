@@ -147,7 +147,7 @@ app.post('/signup', function (req, res) {
   } else {
     res.send({response:'could not find email'});
   }
-    // nodemailer
+    /* nodemailer
     var mailOptions = {
         // from: "takkun00@gmail.com", 
         to: "contact@perfectpitch.io, " + req.body.EMAIL, // list of receivers
@@ -162,8 +162,9 @@ app.post('/signup', function (req, res) {
             console.log("Message sent: " + response.message);
         }
         transport.close(); // shut down the connection pool, no more messages
-    });
-   res.render('success');
+    }); 
+    */
+   res.render('success'); 
 });
 
 // fb
